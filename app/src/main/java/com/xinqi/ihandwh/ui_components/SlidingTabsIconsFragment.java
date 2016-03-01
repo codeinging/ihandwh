@@ -42,8 +42,8 @@ import java.util.List;
  * to display a custom {@link ViewPager} title strip which gives continuous feedback to the user
  * when scrolling.
  */
-public class SlidingTabsColorsFragment extends Fragment {
-
+public class SlidingTabsIconsFragment extends Fragment {
+    public static final String TAG=SlidingTabsIconsFragment.class.getSimpleName();
     /**
      * This class represents a tab to be displayed by {@link ViewPager} and it's associated
      * {@link SlidingTabLayout}.
@@ -53,13 +53,17 @@ public class SlidingTabsColorsFragment extends Fragment {
         private final CharSequence mTitle;
         private final int mIndicatorColor;
         private final int mDividerColor;
-        private final Fragment mFragment;
+        private final int mIconRes;
+        private final int m2ndIconRes;
+        private Fragment mFragment;
 
-        SamplePagerItem(CharSequence title, int indicatorColor, int dividerColor, Fragment fragment) {
+        SamplePagerItem(Fragment fragment, CharSequence title, int indicatorColor, int dividerColor, int iconRes, int iconRes2) {
+            mFragment=fragment;
             mTitle = title;
             mIndicatorColor = indicatorColor;
             mDividerColor = dividerColor;
-            mFragment=fragment;
+            mIconRes=iconRes;
+            m2ndIconRes=iconRes2;
         }
 
         /**
@@ -90,9 +94,15 @@ public class SlidingTabsColorsFragment extends Fragment {
         int getDividerColor() {
             return mDividerColor;
         }
-    }
 
-    static final String LOG_TAG = "SlidingTabsColorsFragment";
+        int getIconRes(){
+            return mIconRes;
+        }
+
+        int get2ndIconRes(){
+            return m2ndIconRes;
+        }
+    }
 
     /**
      * A custom {@link ViewPager} title strip which looks much like Tabs present in Android v4.0 and
@@ -120,20 +130,28 @@ public class SlidingTabsColorsFragment extends Fragment {
          * color, which are used by {@link SlidingTabLayout}.
          */
         //添加预约座位Fragment
-        mTabs.add(new SamplePagerItem(getResources().getString(R.string.book_seats_title), // Title
+        mTabs.add(new SamplePagerItem(BookSeatsContentPage.newInstance(),
+                getResources().getString(R.string.book_seats_title), // Title
                 Color.RED, // Indicator color
                 Color.GRAY,// Divider color
-                BookSeatsContentPage.newInstance()));
+                R.drawable.tabs_title_icon1,
+                R.drawable.tabs_title_selected1));
         //添加查找书籍Fragment
-        mTabs.add(new SamplePagerItem(getResources().getString(R.string.search_book_title),
+        mTabs.add(new SamplePagerItem(
+                SearchBookContentPage.newInstance(),
+                getResources().getString(R.string.search_book_title),
                 getResources().getColor(R.color.search_book_stripe_color),
                 Color.GRAY,
-                SearchBookContentPage.newInstance()));
+                R.drawable.tabs_title_icon2,
+                R.drawable.tabs_title_selected2));
         //添加个人中心Fragment
-        mTabs.add(new SamplePagerItem(getResources().getString(R.string.config_center_title),
+        mTabs.add(new SamplePagerItem(
+                ConfigCenterContentPage.newInstance(),
+                getResources().getString(R.string.config_center_title),
                 getResources().getColor(R.color.config_center_stripe_color),
                 Color.GRAY,
-                ConfigCenterContentPage.newInstance()));
+                R.drawable.tabs_title_icon3,
+                R.drawable.tabs_title_selected3));
         // END_INCLUDE (populate_tabs)
     }
     /**
@@ -143,7 +161,7 @@ public class SlidingTabsColorsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.slidingtab_fragment, container, false);
+        return inflater.inflate(R.layout.sliding_tabs_icons_main_layout, container, false);
     }
 
     // BEGIN_INCLUDE (fragment_onviewcreated)
@@ -157,11 +175,12 @@ public class SlidingTabsColorsFragment extends Fragment {
      *
      * @param view View created in {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}
      */
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // BEGIN_INCLUDE (setup_viewpager)
         // Get the ViewPager and set it's PagerAdapter so that it can display items
-        mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        mViewPager = (ViewPager) view.findViewById(R.id.content_viewpager);
         mViewPager.setAdapter(new SampleFragmentPagerAdapter(getChildFragmentManager()));
         // END_INCLUDE (setup_viewpager)
 
@@ -169,9 +188,7 @@ public class SlidingTabsColorsFragment extends Fragment {
         // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had
         // it's PagerAdapter set.
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
-        mSlidingTabLayout.setDistributeEvenly(true);
-        mSlidingTabLayout.setViewPager(mViewPager);
-
+        mSlidingTabLayout.setCustomTabView(R.layout.sliding_tabs_icons_selector_bar_item, R.id.selectorText, R.id.selectorIcon);
         // BEGIN_INCLUDE (tab_colorizer)
         // Set a TabColorizer to customize the indicator and divider colors. Here we just retrieve
         // the tab at the position, and return it's set color
@@ -182,11 +199,35 @@ public class SlidingTabsColorsFragment extends Fragment {
                 return mTabs.get(position).getIndicatorColor();
             }
 
+            @Override
             public int getDividerColor(int position) {
                 return mTabs.get(position).getDividerColor();
             }
 
         });
+
+        mSlidingTabLayout.setCustomIconsResSet(new SlidingTabLayout.IconsRes() {
+            @Override
+            public List<Integer> getIconsSet() {
+                return null;
+            }
+
+            @Override
+            public int getIconAt(int position) {
+                return mTabs.get(position).getIconRes();
+            }
+
+            @Override
+            public int get2ndIconAt(int position){
+                return mTabs.get(position).get2ndIconRes();
+            }
+        });
+
+        mSlidingTabLayout.setDistributeEvenly(true);
+
+        mSlidingTabLayout.setViewPager(mViewPager);
+
+
         // END_INCLUDE (tab_colorizer)
         // END_INCLUDE (setup_slidingtablayout)
     }
@@ -240,7 +281,7 @@ public class SlidingTabsColorsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("OnActivityResult", "SlidingTabsColorsFragment");
+        Log.d("OnActivityResult", TAG);
         for(int i=0;i<mTabs.size();++i)
             mTabs.get(i).mFragment.onActivityResult(requestCode, resultCode, data);
     }
