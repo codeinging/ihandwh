@@ -16,6 +16,7 @@
 
 package com.xinqi.ihandwh.ui_components;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -81,6 +82,11 @@ public class SlidingTabLayout extends HorizontalScrollView {
         public int get2ndIconAt(int position);
     }
 
+    public interface ActionBarInterface{
+        public ActionBar getCustomActionBar();
+        public TextView getTitle();
+    }
+
     private static final String TAG=SlidingTabLayout.class.getSimpleName();
 
     private static final int TITLE_OFFSET_DIPS = 24;
@@ -101,6 +107,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private final SlidingTabStrip mTabStrip;
 
     private IconsRes mIconsRes;
+
+    private ActionBarInterface mActionBar;
 
     private int mLastSelectedTab=-1;
 
@@ -139,6 +147,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     public void setCustomIconsResSet(IconsRes iconsRes){
         mIconsRes=iconsRes;
+    }
+
+    public void setActionBarInterface(ActionBarInterface _interface){
+        mActionBar=_interface;
     }
 
     /**
@@ -195,7 +207,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         mViewPager = viewPager;
         if (viewPager != null) {
-            //viewPager.addOnPageChangeListener(new InternalViewPagerListener());
+            viewPager.addOnPageChangeListener(new InternalViewPagerListener());
             populateTabStrip();
         }
     }
@@ -299,17 +311,20 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 targetScrollX -= mTitleOffset;
             }
             scrollTo(targetScrollX, 0);
-            updateTabStatus(selectedChild, tabIndex);
+            updateUIStatus(selectedChild, tabIndex);
         }
     }
 
-    private void updateTabStatus(View v,int position){
+    private void updateUIStatus(View v, int position){
         if(mLastSelectedTab!=-1)
             ((ImageView)(mTabStrip.getChildAt(mLastSelectedTab))
                     .findViewById(mTabViewIconId))
                     .setImageResource(mIconsRes.getIconAt(mLastSelectedTab));
 
         ((ImageView)v.findViewById(mTabViewIconId)).setImageResource(mIconsRes.get2ndIconAt(position));
+
+        if(mActionBar!=null)
+            mActionBar.getTitle().setText(mViewPager.getAdapter().getPageTitle(position));
 
         mLastSelectedTab=position;
     }
@@ -367,7 +382,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             for (int i = 0; i < mTabStrip.getChildCount(); i++) {
                 if (v == mTabStrip.getChildAt(i)) {
                     Log.d(TAG,"selected tab "+i+" , last selected "+mLastSelectedTab);
-                    updateTabStatus(v, i);
+                    updateUIStatus(v, i);
                     mViewPager.setCurrentItem(i);
                     return;
                 }

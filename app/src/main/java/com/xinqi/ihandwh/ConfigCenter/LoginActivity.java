@@ -1,4 +1,4 @@
-package com.xinqi.ihandwh.Atys;
+package com.xinqi.ihandwh.ConfigCenter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.xinqi.ihandwh.HomeActivity;
 import com.xinqi.ihandwh.HttpService.OrderSeatService.OrderSeatService;
 import com.xinqi.ihandwh.OrderSeats.SelectSeatActivity;
 //import com.xinqi.ihandwh.R;
@@ -27,7 +28,7 @@ import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
 /**
  * Created by syd on 2015/11/15.
  */
-public class Aty_LogIn extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     android.support.v7.app.ActionBar actionBar;
     EditText etid,etps;
     TextView errortv;
@@ -39,7 +40,7 @@ public class Aty_LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         actionBar = getSupportActionBar();
-        setContentView(R.layout.aty_login);
+        setContentView(R.layout.activity_login);
         actionBar.setTitle("用户登录");
         actionBar.setDisplayHomeAsUpEnabled(true);
         from = getIntent().getIntExtra("from", 0);
@@ -102,18 +103,18 @@ public class Aty_LogIn extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.obj.toString().contains("fail")) {
-                    Toast.makeText(Aty_LogIn.this, "用户名或密码错误！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "用户名或密码错误！", Toast.LENGTH_SHORT).show();
                 } else if(msg.obj.toString().contains("success")) {
-                    Toast.makeText(Aty_LogIn.this, "登录成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                     //更新登录信息
-                    UserinfoUtils userinfoUtils = new UserinfoUtils(Aty_LogIn.this);
+                    UserinfoUtils userinfoUtils = new UserinfoUtils(LoginActivity.this);
                     userinfoUtils.refresh_Login_Status(true);
                     userinfoUtils.save_CureentLogin_Info(id,password);
                     if (from == -1) {
-                       startActivity(new Intent(Aty_LogIn.this, SelectSeatActivity.class));
+                       startActivity(new Intent(LoginActivity.this, SelectSeatActivity.class));
                         finish();
                     } else if (from == 0) {
-                        Intent intent=new Intent(new Intent(Aty_LogIn.this,HomeActivity.class));
+                        Intent intent=new Intent(new Intent(LoginActivity.this,HomeActivity.class));
                         intent.putExtra("pos",2);
 //                            HomeActivity homeActivity = new HomeActivity();
 //                            homeActivity.viewPager.setCurrentItem(2);
@@ -123,7 +124,7 @@ public class Aty_LogIn extends AppCompatActivity {
 
 //                    context.startActivity(new Intent(context, HomeActivity.class));
                 }else {
-                    Toast.makeText(Aty_LogIn.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
 
                 }
             }

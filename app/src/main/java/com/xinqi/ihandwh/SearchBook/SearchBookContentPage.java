@@ -62,7 +62,7 @@ public class SearchBookContentPage extends Fragment implements View.OnClickListe
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.tab02layout, container, false);
+        View view=inflater.inflate(R.layout.search_book_content_page, container, false);
         sharedPreferences=getActivity().getSharedPreferences(getResources().getString(R.string.app_name), Context.MODE_PRIVATE);
         editor=sharedPreferences.edit();
         return view;
@@ -84,7 +84,7 @@ public class SearchBookContentPage extends Fragment implements View.OnClickListe
             his.add(sharedPreferences.getString("searchhis003",""));
         searchView= (SearchView) view.findViewById(R.id.firstsearchView);
         searchView.setQuery("",false);
-        final RelativeLayout relativeLayout= (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.tab02layout,null);
+        final RelativeLayout relativeLayout= (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.search_book_content_page,null);
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

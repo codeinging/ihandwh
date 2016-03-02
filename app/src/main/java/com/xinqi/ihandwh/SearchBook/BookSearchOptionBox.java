@@ -24,7 +24,7 @@ public class BookSearchOptionBox extends Activity{
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tab02layout);
+        setContentView(R.layout.search_book_content_page);
         //mSearchKeyInput=(AutoCompleteTextView)findViewById(R.id.searchKeyInput);
         Button searchName=(Button)findViewById(R.id.searchByBookNameBtn);
         Button searchAuthor=(Button)findViewById(R.id.searchByAuthorBtn);

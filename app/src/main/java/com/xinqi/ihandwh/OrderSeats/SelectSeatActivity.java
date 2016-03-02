@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.xinqi.ihandwh.Atys.Aty_LogIn;
+import com.xinqi.ihandwh.ConfigCenter.LoginActivity;
 import com.xinqi.ihandwh.HttpService.OrderSeatService.OrderSeatService;
 import com.xinqi.ihandwh.Local_Utils.FloorName2ID;
 import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
@@ -79,7 +79,7 @@ public class SelectSeatActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         actionBar=getSupportActionBar();
-        setContentView(R.layout.book_seat);
+        setContentView(R.layout.activity_book_seat);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("查座预约");
         actionBar.show();
@@ -208,7 +208,7 @@ public class SelectSeatActivity extends AppCompatActivity{
                     }
                 } else {
                     Toast.makeText(SelectSeatActivity.this, "请先登录！", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SelectSeatActivity.this, Aty_LogIn.class));
+                    startActivity(new Intent(SelectSeatActivity.this, LoginActivity.class));
                 }
             }
         });

@@ -22,6 +22,7 @@ import com.xinqi.ihandwh.ConfigCenter.ConfigCenterContentPage;
 import com.xinqi.ihandwh.SearchBook.SearchBookContentPage;
 import com.xinqi.ihandwh.R;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -218,8 +220,20 @@ public class SlidingTabsIconsFragment extends Fragment {
             }
 
             @Override
-            public int get2ndIconAt(int position){
+            public int get2ndIconAt(int position) {
                 return mTabs.get(position).get2ndIconRes();
+            }
+        });
+
+        mSlidingTabLayout.setActionBarInterface(new SlidingTabLayout.ActionBarInterface() {
+            @Override
+            public ActionBar getCustomActionBar() {
+                return getActivity().getActionBar();
+            }
+
+            @Override
+            public TextView getTitle() {
+                return (TextView)(getActivity().getActionBar().getCustomView().findViewById(R.id.textViewTitle));
             }
         });
 

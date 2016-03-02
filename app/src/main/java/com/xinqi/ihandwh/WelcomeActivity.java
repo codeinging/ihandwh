@@ -1,4 +1,4 @@
-package com.xinqi.ihandwh.Atys;
+package com.xinqi.ihandwh;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,12 +12,11 @@ import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.message.PushAgent;
-import com.xinqi.ihandwh.R;
 
 /**
  * Created by syd on 2015/11/12.
  */
-public class WelcomeAty extends Activity {
+public class WelcomeActivity extends Activity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     //欢迎界面停留时间
@@ -44,26 +43,14 @@ public class WelcomeAty extends Activity {
         @Override
         public void handleMessage(Message msg) {
             //判断是否已经登陆，如果没有登陆，则进入登陆界面
-//            UserinfoUtils userinfoUtils =new UserinfoUtils(WelcomeAty.this);
-            /*if (!userinfoUtils.get_Login_Status()){
-                Toast.makeText(WelcomeAty.this,"请先登录",Toast.LENGTH_LONG).show();
-                goAtyLogin();
-            }else {
-                goHome();//进入程序主界面
-            }*/
             goHome();
         }
 
 
     };
-   /* private void goAtyLogin() {
-        Intent intent=new Intent(WelcomeAty.this,Aty_LogIn.class);
-        startActivity(intent);
-        finish();
-    }*/
 
     private void goHome() {
-        Intent intent=new Intent(WelcomeAty.this,HomeActivity.class);
+        Intent intent=new Intent(WelcomeActivity.this,HomeActivity.class);
         startActivity(intent);
         finish();//结束当前的activity
     }

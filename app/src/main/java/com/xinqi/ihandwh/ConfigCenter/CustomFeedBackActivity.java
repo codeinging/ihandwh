@@ -25,7 +25,7 @@ public class CustomFeedBackActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.custom_feedback_layout);
+        setContentView(R.layout.activity_custom_feedback);
         mContactMethod=(EditText)findViewById(R.id.contactMethodEditText);
         mFeedBackContent=(EditText)findViewById(R.id.feedBackContentEditText);
     }

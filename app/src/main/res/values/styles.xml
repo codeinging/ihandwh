@@ -44,4 +44,8 @@
         <item name="cardBackgroundColor">#EEEEEE</item>
     </style>
 
+    <style name="HomeActionBar" parent="@android:style/Theme.Holo">
+        <item name="android:textColorPrimary">@color/primary_text_holo_dark</item>
+    </style>
+
 </resources>

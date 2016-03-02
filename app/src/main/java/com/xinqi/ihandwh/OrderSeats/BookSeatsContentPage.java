@@ -23,7 +23,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.xinqi.ihandwh.Atys.Aty_LogIn;
+import com.xinqi.ihandwh.ConfigCenter.LoginActivity;
 import com.xinqi.ihandwh.HttpService.OrderSeatService.OrderSeatService;
 import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
 import com.xinqi.ihandwh.Model.FloorInfo;
@@ -99,7 +99,7 @@ public class BookSeatsContentPage extends Fragment{
         editor= sharedPreferences.edit();
         isfirstin=sharedPreferences.getBoolean("isfirstin",true);
         hasknow= sharedPreferences.getBoolean("knowpull",false);
-        View view=inflater.inflate(R.layout.tab01layout, container, false);
+        View view=inflater.inflate(R.layout.book_seats_content_page, container, false);
         tvrefresh= (TextView) view.findViewById(R.id.tvrefresh);
         if (!hasknow)tvrefresh.setVisibility(View.VISIBLE);
         Log.d("BookSeatsCP", "onCreateView()");
@@ -153,7 +153,7 @@ public class BookSeatsContentPage extends Fragment{
                 startActivity(newIntent);
                 isfirstin=false;
                 }else {
-                    Intent intent=new Intent(new Intent(getActivity(), Aty_LogIn.class));
+                    Intent intent=new Intent(new Intent(getActivity(), LoginActivity.class));
                     Toast.makeText(getActivity(),"请先登录！",Toast.LENGTH_SHORT).show();
                     intent.putExtra("from",-1);
                     startActivity(intent);
@@ -281,9 +281,6 @@ public class BookSeatsContentPage extends Fragment{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // return;
-               /* Intent intent = new Intent(ViewPager.this, MainActivity.class);
-                intent.putExtra("request", 2);
-                startActivity(intent);*/
                 mSwipeRefreshLayout.setRefreshing(false);
                 dialog.dismiss();
             }
