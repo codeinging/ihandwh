@@ -1,8 +1,9 @@
 package com.xinqi.ihandwh.ConfigCenter;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,13 +19,19 @@ import java.util.List;
 /**
  * Created by presisco on 2015/12/1.
  */
-public class CustomFeedBackActivity extends Activity {
+public class CustomFeedBackActivity extends AppCompatActivity {
     protected EditText mContactMethod;
     protected EditText mFeedBackContent;
+    private android.support.v7.app.ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        actionBar=getSupportActionBar();
+        setContentView(R.layout.see_collected_book_route);
+        actionBar.setTitle("进行反馈");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
         setContentView(R.layout.activity_custom_feedback);
         mContactMethod=(EditText)findViewById(R.id.contactMethodEditText);
         mFeedBackContent=(EditText)findViewById(R.id.feedBackContentEditText);
@@ -53,5 +60,13 @@ public class CustomFeedBackActivity extends Activity {
             }
         });
     }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home){
+            onBackPressed();
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

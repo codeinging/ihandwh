@@ -100,7 +100,6 @@ public class BookSeatsContentPage extends Fragment{
         isfirstin=sharedPreferences.getBoolean("isfirstin",true);
         hasknow= sharedPreferences.getBoolean("knowpull",false);
         View view=inflater.inflate(R.layout.book_seats_content_page, container, false);
-        tvrefresh= (TextView) view.findViewById(R.id.tvrefresh);
         if (!hasknow)tvrefresh.setVisibility(View.VISIBLE);
         Log.d("BookSeatsCP", "onCreateView()");
         //Test Data Gen
@@ -201,10 +200,10 @@ public class BookSeatsContentPage extends Fragment{
             @Override
             public void onRefresh() {
                 Log.i("bac", "onRefresh called from SwipeRefreshLayout");
-                editor.putBoolean("knowpull", true);
-                editor.commit();
-                if (tvrefresh.getVisibility() == View.VISIBLE)
-                    tvrefresh.setVisibility(View.INVISIBLE);
+               /* editor.putBoolean("knowpull", true);
+                editor.commit();*/
+                /*if (tvrefresh.getVisibility() == View.VISIBLE)
+                    tvrefresh.setVisibility(View.INVISIBLE);*/
 //                initiateRefresh();
                 if (!checkNetworkState()){//网络不可用
                     setNetwork();

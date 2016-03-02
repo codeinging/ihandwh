@@ -28,6 +28,8 @@ public class SeeBookRouteCollect extends AppCompatActivity {
         setContentView(R.layout.see_collected_book_route);
         actionBar.setTitle("借书收藏路线");
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
+
         nonroute= (TextView) findViewById(R.id.nonroute);
         listView= (ListView) findViewById(R.id.seebookroutelistview);
         myBookRootListViewAdapter=new MyBookRootListViewAdapter(this,nonroute);

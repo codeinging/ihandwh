@@ -73,15 +73,17 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
         Log.i("bac",haslogin+"是否登陆");
         if (haslogin){
             btnlog_in_out.setBackgroundResource(R.drawable.btn_logout_bacground);
-            btnlog_in_out.setText("退出登录");
-            id_tv.setText("学号："+userinfoUtils.get_LastId());
+//            btnlog_in_out.setText("退出登录");
+            btnlog_in_out.setBackgroundResource(R.drawable.btn_logout_bacground);
+            id_tv.setTextSize(18);
+            id_tv.setText("登录学号\n\n" + userinfoUtils.get_LastId());
         }else {
+            btnlog_in_out.setBackgroundResource(R.drawable.btn_login_bacground);
             Log.i("bac", haslogin + "是否登陆");
             btnlog_in_out.setBackgroundResource(R.drawable.btn_login_bacground);
-            btnlog_in_out.setText("登录");
-            id_tv.setText("学号："+"未登录");
+            id_tv.setTextSize(25);
+            id_tv.setText("未登录");
         }
-
     }
     @Override
     public void onResume() {
