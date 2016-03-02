@@ -39,7 +39,7 @@ public class NewSearch extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         actionBar=getSupportActionBar();
-        setContentView(R.layout.newbooksearch);
+        setContentView(R.layout.activity_new_booksearch);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.newsearchactionbar);
         actionBar.show();

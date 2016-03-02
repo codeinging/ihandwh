@@ -69,7 +69,7 @@ public class SearchBookResultActivity extends AppCompatActivity implements Searc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         actionBar = getSupportActionBar();
-        setContentView(R.layout.search_book_result_2);
+        setContentView(R.layout.activity_search_book_result);
         nomoretv= (TextView) findViewById(R.id.nomoretv);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.newsearchactionbar02);
@@ -87,7 +87,7 @@ public class SearchBookResultActivity extends AppCompatActivity implements Searc
         View view01=actionBar.getCustomView();
         searchView= (SearchView) view01.findViewById(R.id.searchview02);
         mCancel= (Button) view01.findViewById(R.id.newsearchbtncancel02);
-        View view=LayoutInflater.from(this).inflate(R.layout.search_book_result_2,null);
+        View view=LayoutInflater.from(this).inflate(R.layout.activity_search_book_result,null);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

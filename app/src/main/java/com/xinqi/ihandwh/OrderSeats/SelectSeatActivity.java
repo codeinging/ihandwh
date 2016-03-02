@@ -131,7 +131,7 @@ public class SelectSeatActivity extends AppCompatActivity{
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         mNoSeatWarn.setVisibility(View.GONE);
-                        SeatInfoAdapter.selected = -1;
+                        mSeatInfoAdapter.clearSelection();
                         //选择不限
                         selectfloor_pos = position;
                         mSelectedFloorName = floor_item.get(position);
@@ -171,6 +171,8 @@ public class SelectSeatActivity extends AppCompatActivity{
         mSeatRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
 
         mSeatInfoAdapter = new SeatInfoAdapter(new SeatInfo[0],this);
+        mSeatInfoAdapter.setPickColors(getResources().getColor(R.color.default_background_color),
+                                        getResources().getColor(R.color.selected_background_color));
         // Set CustomAdapter as the adapter for RecyclerView.
         mSeatRecyclerView.setAdapter(mSeatInfoAdapter);
 
@@ -193,7 +195,7 @@ public class SelectSeatActivity extends AppCompatActivity{
                         startActivity(intent);
 
                     } else {
-                        if (SeatInfoAdapter.selected == -1) {
+                        if (mSeatInfoAdapter.getSelectedSeat() == null) {
                             Toast.makeText(SelectSeatActivity.this, "请选择座位！", Toast.LENGTH_SHORT).show();
                         } else {
                             intent.putExtra(SelectSeatActivity.ORDERMODE, 1);

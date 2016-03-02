@@ -366,7 +366,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         public void onPageSelected(int position) {
             if (mScrollState == ViewPager.SCROLL_STATE_IDLE) {
                 mTabStrip.onViewPagerPageChanged(position, 0f);
-                //    scrollToTab(position, 0);
+                    scrollToTab(position, 0);
             }
 
             if (mViewPagerPageChangeListener != null) {
@@ -382,13 +382,11 @@ public class SlidingTabLayout extends HorizontalScrollView {
             for (int i = 0; i < mTabStrip.getChildCount(); i++) {
                 if (v == mTabStrip.getChildAt(i)) {
                     Log.d(TAG,"selected tab "+i+" , last selected "+mLastSelectedTab);
-                    updateUIStatus(v, i);
                     mViewPager.setCurrentItem(i);
                     return;
                 }
             }
         }
     }
-
 }
 
