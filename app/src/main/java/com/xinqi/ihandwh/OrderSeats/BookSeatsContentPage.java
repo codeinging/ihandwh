@@ -347,6 +347,7 @@ public class BookSeatsContentPage extends Fragment{
                 }else {
                 floorInfos=OrderSeatService.getFloorInfo("201100800169","011796");
                 }
+                Log.i("bac","isFirstin set false");
                 editor.putBoolean("isfirstin",false);
                 editor.commit();
                 floorInfoHelper.deleteAllFloorInfo();
@@ -362,9 +363,7 @@ public class BookSeatsContentPage extends Fragment{
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.i("bac","网络还未设置好！"+e.toString());
-                if (isfirstin){
 
-                }
             }
             // Return a new random list of cheeses
             return 0;
