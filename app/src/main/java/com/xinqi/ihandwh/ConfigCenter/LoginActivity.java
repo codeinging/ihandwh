@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         actionBar.setTitle("用户登录");
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
         from = getIntent().getIntExtra("from", 0);
         etid = (EditText) findViewById(R.id.etid);
         etps = (EditText) findViewById(R.id.etps);
@@ -50,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         etid.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override

@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:id="@+id/searchparent"
-    android:focusableInTouchMode="true"
-    android:background="@color/shallow_gray">
+    android:focusableInTouchMode="true">
 
     <!--<AutoCompleteTextView-->
         <!--android:id="@+id/searchKeyInput"-->
@@ -38,28 +37,27 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height_normal"
+        android:layout_height="wrap_content"
         android:queryHint="@string/search_hint"
         android:id="@+id/firstsearchView"
         android:iconifiedByDefault="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp"
-        android:background="@drawable/image_search_book_buttons" />
+        android:layout_marginTop="59dp" />
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/button_height_normal"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="150dp"
         android:layout_below="@+id/firstsearchView">
         <Button
             android:id="@+id/searchByAuthorBtn"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="4"
             android:text="按作者搜索"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/image_search_book_buttons" />
+           />
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -69,11 +67,11 @@
         <Button
             android:id="@+id/searchByBookNameBtn"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="4"
             android:layout_marginRight="30dp"
             android:text="按书名搜索"
-            android:background="@drawable/image_search_book_buttons" />
+            />
     </LinearLayout>
     <Button
         android:layout_width="match_parent"
