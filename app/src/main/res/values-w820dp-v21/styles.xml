@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="HomeActionBar" parent="@android:style/Theme.Material.Light.DarkActionBar">
-        <item name="android:colorPrimary">@color/holo_primary</item>
-        <item name="android:statusBarColor">@color/holo_primary</item>
-        <item name="android:textColorPrimary">@color/primary_text_holo_dark</item>
-        <item name="android:actionBarSize">32dip</item>
-    </style>
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/holo_primary</item>

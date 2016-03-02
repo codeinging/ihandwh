@@ -24,7 +24,7 @@ public class WelcomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.welcome_layout);
+        setContentView(R.layout.activity_welcome);
         sharedPreferences=getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
         editor=sharedPreferences.edit();
         editor.putBoolean("isfirstin", true);

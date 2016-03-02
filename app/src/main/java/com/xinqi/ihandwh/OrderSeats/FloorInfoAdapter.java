@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.widget.TextView;
 
 //import com.xinqi.ihandwh.R;
@@ -30,11 +31,18 @@ public class FloorInfoAdapter extends RecyclerView.Adapter<FloorInfoAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final View rootView;
         private final CardView cardView;
+        private final TextView nameText;
+        private final TextView capText;
+        private final TextView usageText;
+
         public ViewHolder(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
             rootView=v;
             cardView = (CardView) v.findViewById(R.id.floorInfoCardView);
+            nameText = (TextView) v.findViewById(R.id.floorNameTextView);
+            capText = (TextView)  v.findViewById(R.id.floorCapacityTextView);
+            usageText = (TextView) v.findViewById(R.id.floorUsageTextView);
         }
 
         public View getRootView() {
@@ -42,6 +50,15 @@ public class FloorInfoAdapter extends RecyclerView.Adapter<FloorInfoAdapter.View
         }
         public CardView getCardView() {
             return cardView;
+        }
+        public TextView getNameText(){
+            return nameText;
+        }
+        public TextView getCapText(){
+            return capText;
+        }
+        public TextView getUsageText(){
+            return usageText;
         }
     }
     // END_INCLUDE(recyclerViewSampleViewHolder)
@@ -76,56 +93,17 @@ public class FloorInfoAdapter extends RecyclerView.Adapter<FloorInfoAdapter.View
         Log.d(TAG, "Element " + position + " set.");
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        TextView op1 = (TextView) viewHolder.getRootView().findViewById(R.id.floorNameTextView);
-        if (op1!=null){
-            op1.setText(mDataSet[position].layer);
-        }
-        TextView op2 = (TextView) viewHolder.getRootView().findViewById(R.id.floorCapacityTextView);
-        if (op2!=null){
-            op2.setText(mDataSet[position].total+"");
-        }
-        TextView op3 = (TextView) viewHolder.getRootView().findViewById(R.id.floorUsageTextView);
-        if (op3!=null){
-            op3.setText(mDataSet[position].rest+"");
-        }
-        if (mDataSet[position].rest<=0)
-        {
-            //viewHolder.getRootView().setBackgroundColor(parent.getResources().getColor(R.color.red));
-           /* op1.setTextColor(parent.getResources().getColor(R.color.red));
-            op2.setTextColor(parent.getResources().getColor(R.color.red));
-            op3.setTextColor(parent.getResources().getColor(R.color.red));*/
+        viewHolder.getNameText().setText(mDataSet[position].layer);
+        viewHolder.getCapText().setText(mDataSet[position].total+"");
+        viewHolder.getUsageText().setText(mDataSet[position].rest+"");
+
+        if (mDataSet[position].rest<=0) {
             viewHolder.getCardView().setCardBackgroundColor(parent.getResources().getColor(R.color.red));
-
-            //viewHolder.getCardView().setCardBackgroundColor(R.color.red);
         }else if (mDataSet[position].rest<10){
-           /* op1.setTextColor(parent.getResources().getColor(R.color.orange));
-            op2.setTextColor(parent.getResources().getColor(R.color.orange));
-            op3.setTextColor(parent.getResources().getColor(R.color.orange));*/
-           // viewHolder.getRootView().setBackgroundColor(parent.getResources().getColor(R.color.orange));
-//            viewHolder.getCardView().setCardBackgroundColor(R.color.orange);
             viewHolder.getCardView().setCardBackgroundColor(parent.getResources().getColor(R.color.orange));
-
-
         }else {
-            /*op1.setTextColor(parent.getResources().getColor(R.color.black));
-            op2.setTextColor(parent.getResources().getColor(R.color.black));
-            op3.setTextColor(parent.getResources().getColor(R.color.black));*/
-            //viewHolder.getRootView().setBackgroundColor(parent.getResources().getColor(R.color.bl));
-//            viewHolder.getCardView().setCardBackgroundColor(R.color.black);
             viewHolder.getCardView().setCardBackgroundColor(parent.getResources().getColor(R.color.white));
-
         }
-       /* viewHolder.getCardView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mSelectSeatIntent = new Intent(parent, SelectSeatActivity.class);
-                mSelectSeatIntent.putExtra("random", false);
-                mSelectSeatIntent.putExtra("floorname", mDataSet[position].layer);
-                parent.startActivity(mSelectSeatIntent);
-                Log.d(TAG, "Element " + position + " clicked.");
-            }
-        });*/
-
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 

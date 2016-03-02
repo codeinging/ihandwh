@@ -30,14 +30,19 @@ public class SeatInfoAdapter extends RecyclerView.Adapter<SeatInfoAdapter.ViewHo
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final CardView cardView;
+        private final TextView seatView;
         public ViewHolder(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
             cardView = (CardView) v.findViewById(R.id.seatInfoCardView);
+            seatView=(TextView)v.findViewById(R.id.seatIdTextView);
         }
 
         public CardView getCardView() {
             return cardView;
+        }
+        public TextView getTextView(){
+            return seatView;
         }
     }
     // END_INCLUDE(recyclerViewSampleViewHolder)
@@ -75,7 +80,7 @@ public class SeatInfoAdapter extends RecyclerView.Adapter<SeatInfoAdapter.ViewHo
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
         final CardView cardView=viewHolder.getCardView();
-        TextView op = (TextView) cardView.findViewById(R.id.seatIdTextView);
+        TextView op = viewHolder.getTextView();
         if(op!=null) {
             op.setText(mDataSet[position].id);
             if(selected!=-1) {
