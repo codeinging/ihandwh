@@ -14,7 +14,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
-import com.xinqi.ihandwh.ui_components.SlidingTabsColorsFragment;
+import com.xinqi.ihandwh.ui_components.SlidingTabsIconsFragment;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.umeng.update.UmengUpdateAgent;
@@ -31,7 +31,7 @@ import java.util.Date;
 public class HomeActivity extends FragmentActivity {
     long pre_click_time;
     android.app.ActionBar actionBar;
-    private  SlidingTabsColorsFragment mSlidingTabsHost;
+    private SlidingTabsIconsFragment mSlidingTabsHost;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     WifiManager wifiManager;
@@ -48,7 +48,7 @@ public class HomeActivity extends FragmentActivity {
         //getActionBar().setTitle(getResources().getString(R.string.app_name));
         if(savedInstanceState != null)
             return;
-        mSlidingTabsHost=new SlidingTabsColorsFragment();
+        mSlidingTabsHost=new SlidingTabsIconsFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.slidingtab_fragment, mSlidingTabsHost);
         transaction.commit();
