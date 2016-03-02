@@ -19,10 +19,8 @@ public class SeatInfoAdapter extends RecyclerView.Adapter<SeatInfoAdapter.ViewHo
     private static final String TAG = "SeatInfoAdapter";
     private Context parent;
     private SeatInfo[] mDataSet;
-    //设置为静态
-    public static int selected=-1;
-    private   SeatInfo mSelectedSeat;
-    private CardView curSelected;
+    private int mCardDefaultColor;
+    private int mCardPickedColor;
 // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
 
     /**
@@ -31,11 +29,31 @@ public class SeatInfoAdapter extends RecyclerView.Adapter<SeatInfoAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final CardView cardView;
         private final TextView seatView;
-        public ViewHolder(View v) {
+        private static CardView lastPickedCard=null;
+        private static int lastPickedPos=-1;
+        private final int defaultColor;
+        private final int pickedColor;
+
+        public ViewHolder(View v,int _defaultcolor,int _pickedcolor) {
             super(v);
             // Define click listener for the ViewHolder's View.
             cardView = (CardView) v.findViewById(R.id.seatInfoCardView);
             seatView=(TextView)v.findViewById(R.id.seatIdTextView);
+            defaultColor=_defaultcolor;
+            pickedColor=_pickedcolor;
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (lastPickedPos != -1)
+                        lastPickedCard.setCardBackgroundColor(defaultColor);
+                    //设置选中项颜色并记录
+                    cardView.setCardBackgroundColor(pickedColor);
+                    lastPickedPos = getAdapterPosition();
+                    lastPickedCard = cardView;
+                    Log.d(TAG, "Element " + lastPickedPos + " clicked.");
+                }
+            });
         }
 
         public CardView getCardView() {
@@ -60,6 +78,11 @@ public class SeatInfoAdapter extends RecyclerView.Adapter<SeatInfoAdapter.ViewHo
     public void updateDataSet(SeatInfo[] dataSet)
     {   mDataSet=dataSet;}
 
+    public void setPickColors(int _default,int _picked){
+        mCardDefaultColor=_default;
+        mCardPickedColor=_picked;
+    }
+
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
     // Create new views (invoked by the layout manager)
     @Override
@@ -67,7 +90,7 @@ public class SeatInfoAdapter extends RecyclerView.Adapter<SeatInfoAdapter.ViewHo
         // Create a new view.
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.seat_info_cardview, viewGroup, false);
-        return new ViewHolder(v);
+        return new ViewHolder(v,mCardDefaultColor,mCardPickedColor);
     }
     // END_INCLUDE(recyclerViewOnCreateViewHolder)
 
@@ -79,40 +102,12 @@ public class SeatInfoAdapter extends RecyclerView.Adapter<SeatInfoAdapter.ViewHo
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        final CardView cardView=viewHolder.getCardView();
-        TextView op = viewHolder.getTextView();
-        if(op!=null) {
-            op.setText(mDataSet[position].id);
-            if(selected!=-1) {
-                if (mDataSet[position].id != mSelectedSeat.id) {
-                    cardView.setCardBackgroundColor(parent.getResources().getColor(R.color.default_background_color));
-                }
-                else {
-                    //更新选中项CardView引用
-                    cardView.setCardBackgroundColor(parent.getResources().getColor(R.color.cardview_picked_color));
-                    curSelected=cardView;
-                }
-            }
-            //设置点击监听
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //恢复之前选中项的颜色
-                    if (selected != -1)
-                        curSelected.setCardBackgroundColor(parent.getResources().getColor(R.color.default_background_color));
-                    //设置选中项颜色并记录
-                    cardView.setCardBackgroundColor(parent.getResources().getColor(R.color.cardview_picked_color));
-                    selected = position;
-                    Log.i("bacground",selected+"9999999999999");
-                    curSelected = cardView;
-                    mSelectedSeat = mDataSet[position];
-                    Log.d(TAG, "Element " + position + " clicked.");
-                }
-            });
-        }
-        else
-        {
-            Log.d(TAG,"Element "+ position +"cant fint TextView");
+
+        viewHolder.getTextView().setText(mDataSet[position].id);
+        if(position==ViewHolder.lastPickedPos){
+            viewHolder.getCardView().setCardBackgroundColor(mCardPickedColor);
+        }else{
+            viewHolder.getCardView().setCardBackgroundColor(mCardDefaultColor);
         }
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
@@ -122,8 +117,15 @@ public class SeatInfoAdapter extends RecyclerView.Adapter<SeatInfoAdapter.ViewHo
     public int getItemCount() {
         return mDataSet.length;
     }
-    public SeatInfo getSelectedSeat()
-    {
-        return mSelectedSeat;
+    public SeatInfo getSelectedSeat() {
+        if(ViewHolder.lastPickedPos==-1) {
+            return null;
+        }else{
+            return mDataSet[ViewHolder.lastPickedPos];
+        }
+    }
+    public void clearSelection(){
+        ViewHolder.lastPickedPos=-1;
+        ViewHolder.lastPickedCard=null;
     }
 }
