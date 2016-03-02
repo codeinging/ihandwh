@@ -37,8 +37,6 @@ public class MyOrderHistoryListViewAdapter extends BaseAdapter {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private boolean leatestordercanceled;
-   /* private AlertDialog alertDialog;
-    private AlertDialog.Builder builder;*/
     private ProgressDialog progressDialog;
     private TextView nonOrderhistorytv;
     public MyOrderHistoryListViewAdapter(Context context,TextView nonOrderhistorytv){

@@ -24,4 +24,8 @@
     <color name="mynormal01">#00CFFF</color>
     <color name="mypress01">#6ca0ac</color>
     <color name="darkRed">#990033</color>
+    <color name="primary_material_dark">#1a6bac</color>
+    <color name="holo_primary">#2196f3</color>
+    <color name="bright_foreground_disabled_holo_dark">#4c4c4c</color>
+    <color name="bright_foreground_holo_dark">#1b4cbf</color>
 </resources>

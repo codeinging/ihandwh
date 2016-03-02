@@ -13,8 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.xinqi.ihandwh.Atys.Aty_LogIn;
-import com.xinqi.ihandwh.Atys.HomeActivity;
+import com.xinqi.ihandwh.HomeActivity;
 import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.xinqi.ihandwh.R;
@@ -36,11 +35,6 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
         return fragment;
     }
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//
-//    }
-
     /**
      * Fragment初始化入口，用于绘制界面和初始化，代码在return view和View view中间插入
      * @param inflater
@@ -50,7 +44,7 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.tab03layout, container, false);
+        View view=inflater.inflate(R.layout.config_center_content_page, container, false);
         id_tv= (TextView) view.findViewById(R.id.id_tv);
         //id_tv.setOnClickListener(this);
         view.findViewById(R.id.btn_see_order_record).setOnClickListener(this);
@@ -95,6 +89,11 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
         MobclickAgent.onPageStart("ConfigCenter");
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     /**
      * Called when a view has been clicked.
      *
@@ -109,7 +108,7 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
                     Log.i("bac","8888888");
                     logout();
                 }else {
-                    Intent intent=new Intent(getActivity(), Aty_LogIn.class);
+                    Intent intent=new Intent(getActivity(), LoginActivity.class);
                     intent.putExtra("from",0);
                     startActivity(intent);
                 // TODO: 2015/11/25
@@ -132,45 +131,12 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
                 break;
             case R.id.feedBackBtn:
                 startActivity(new Intent(getActivity(),CustomFeedBackActivity.class));
-//                com.umeng.fb.util.Res.setPackageName("com.xinqi.ihandwh");
-//                FeedbackAgent agent=new FeedbackAgent(getActivity());
-//                agent.startFeedbackActivity();
                 break;
             case R.id.getDeviceTokenBtn:
                 startActivity(new Intent(getActivity(),DeviceTokenActivity.class));
                 break;
             default:break;
         }
-//        if (v.getId()==R.id.btn_log_in_out){
-////            Log.i("bac","8888888");
-//            if (haslogin){
-//                Log.i("bac","8888888");
-//                logout();
-//            }else {
-//                Intent intent=new Intent(getActivity(), Aty_LogIn.class);
-//                intent.putExtra("from",0);
-//                startActivity(intent);
-//                // TODO: 2015/11/25
-//                /*getActivity().finish();*/
-//            }
-//        }else if (v.getId()==R.id.aboutBtn){
-//
-//                startActivity(new Intent(getActivity(),SeeAboutOur.class));
-//        }else if (v.getId()==R.id.btn_see_collect_book_route){
-//                startActivity(new Intent(getActivity(),SeeBookRouteCollect.class));
-//        }
-//        else {
-//            if (haslogin) {
-//                switch (v.getId()) {
-//                    case R.id.btn_see_order_record:
-//                        startActivity(new Intent(getActivity(),SeeOrderSeatHistory.class));
-//                        break;
-//                }
-//            }else {
-//                Log.i("bac","未登录");
-//                Toast.makeText(getActivity(),"请先登录！",Toast.LENGTH_SHORT).show();
-//            }
-//        }
     }
     /**
     * 退出登录
@@ -192,17 +158,8 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                       /* FragmentManager fm = getFragmentManager();
-                        FragmentTransaction tx = fm.beginTransaction();*/
-                        /*tx.hide(ConfigCenterContentPage.this);
-                        tx.show(ConfigCenterContentPage.this);*/
-
-                        //tx.replace(R.id.configue,ConfigCenterContentPage.this);
-//                        tx.commit();
                         Intent intent=new Intent(new Intent(getActivity(),HomeActivity.class));
                         intent.putExtra("pos",2);
-//                            HomeActivity homeActivity = new HomeActivity();
-//                            homeActivity.viewPager.setCurrentItem(2);
                         startActivity(intent);
                         getActivity().finish();
                     }

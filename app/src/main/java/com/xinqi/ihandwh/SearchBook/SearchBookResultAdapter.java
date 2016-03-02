@@ -106,7 +106,7 @@ public class SearchBookResultAdapter extends RecyclerView.Adapter<RecyclerView.V
         View v=null;
         if(viewType==TYPE_ITEM){
             v = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.book_info_cardview, viewGroup, false);
+                    .inflate(R.layout.cardview_book_info, viewGroup, false);
             return new ItemViewHolder(v);
         }
         else if(viewType==TYPE_FOOTER){
