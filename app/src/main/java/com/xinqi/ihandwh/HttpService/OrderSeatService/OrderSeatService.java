@@ -8,20 +8,19 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.xinqi.ihandwh.HttpService.HttpConnectionService;
 import com.xinqi.ihandwh.HttpService.HttpTools;
 import com.xinqi.ihandwh.Model.FloorInfo;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.util.EntityUtils;
-import org.jsoup.Jsoup;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -200,7 +199,8 @@ public class OrderSeatService extends Service{
                     + "</lbComformTime></info>";
 
             info += "</infos>";*/
-            String s=room.charAt(room.length() - 1) +"楼"+sitNo+"座位号"+"日期："+date;
+
+            String s=room.charAt(room.length() - 1) +","+sitNo+","+date;
             return s;
         }
 
@@ -317,6 +317,7 @@ public class OrderSeatService extends Service{
         // 发送post请求
 
         String yuyueInfo = HttpTools.PostHTTPRequest("http://yuyue.juneberry.cn/BookSeat/BookSeatListForm.aspx", coreClient, postParameters);
+        Log.i("bac","yuyueInfo；"+yuyueInfo);
         // 座号list
         List<String> lists =parseSitsInfo(yuyueInfo);
         //System.out.println("得到指定房间预约信息返回结果;原始数据:"+yuyueInfo);

@@ -15,13 +15,11 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.message.PushAgent;
 import com.xinqi.ihandwh.ConfigCenter.SeeOrderSeatHistory;
 import com.xinqi.ihandwh.HttpService.HttpTools;
 import com.xinqi.ihandwh.HttpService.OrderSeatService.OrderSeatService;
-import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
-//import com.xinqi.ihandwh.R;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.message.PushAgent;
 import com.xinqi.ihandwh.R;
 
 import org.apache.http.client.HttpClient;
@@ -29,7 +27,8 @@ import org.apache.http.client.HttpClient;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+
+//import com.xinqi.ihandwh.R;
 
 /**
  * Created by syd on 2015/11/16.
@@ -128,28 +127,34 @@ public class Order_Seat_Process extends AppCompatActivity {
                     calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + 1);
                     String date1 = format.format(calendar.getTime());
                     //Log.i("bacground","精确预约11111111111111");
-                    UserinfoUtils userinfoUtils = new UserinfoUtils(Order_Seat_Process.this);
+//                    UserinfoUtils userinfoUtils = new UserinfoUtils(Order_Seat_Process.this);
                 try {
-                    OrderSeatService.testUserInfoIsTrue(userinfoUtils.get_LastId(),userinfoUtils.get_LastPassword());
+//                    OrderSeatService.testUserInfoIsTrue(userinfoUtils.get_LastId(),userinfoUtils.get_LastPassword());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 HttpTools.GetHTTPRequest(
                             "http://yuyue.juneberry.cn/BookSeat/BookSeatListForm.aspx",
                             OrderSeatService.coreClient);
-                    List<String> list = null; // 获取该房间的列表
-                    try {
-                        list = OrderSeatService.getYuYueInfo("000" + room, date1);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    if (0 == list.size()) {
-                        // 没有可用座位
-                        resultspe = "empty";
-                        message.what = ORDERSTATUS_SPECIFIC_FAIl;
-                    } else {
+//                    List<String> list = null; // 获取该房间的列表
+//                    try {
+//
+////                        list = OrderSeatService.getYuYueInfo("000" + room, date1);
+//                        Log.i("bac","获取该房间的列表"+list);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                        Log.i("bac", "精准预约：list为空");
+//
+//                    }
+//                    if (0 == list.size()) {
+//                        // 没有可用座位
+//                        resultspe = "empty";
+//                        Log.i("bac","精准预约：list为空");
+//                        message.what = ORDERSTATUS_SPECIFIC_FAIl;
+//                    } else {
                         try {
                             resultspe = OrderSeatService.subYuYueInfo(OrderSeatService.coreClient,room, sitNo, date);
+                            Log.i("bac","精准预约返回值："+resultspe);
                         } catch (Exception e) {
                             //链接错误，包括超时
                             Log.i("bacground", "精确预约超时");
@@ -168,7 +173,7 @@ public class Order_Seat_Process extends AppCompatActivity {
                         //Log.i("bacground","精确预444444444444444");
                         Log.i("bacground", "精确预约返回结果：" + resultspe);
                         message.obj = resultspe;
-                    }
+//                    }
                      handler.sendMessage(message);
 
                 }
@@ -183,8 +188,8 @@ public class Order_Seat_Process extends AppCompatActivity {
             public void run() {
                 Message message = new Message();
                 try {
-                    UserinfoUtils userinfoUtils = new UserinfoUtils(Order_Seat_Process.this);
-                    boolean b = OrderSeatService.testUserInfoIsTrue(userinfoUtils.get_LastId(), userinfoUtils.get_LastPassword());
+//                    UserinfoUtils userinfoUtils = new UserinfoUtils(Order_Seat_Process.this);
+//                    boolean b = OrderSeatService.testUserInfoIsTrue(userinfoUtils.get_LastId(), userinfoUtils.get_LastPassword());
                     String result = OrderSeatService.OneKeySit(OrderSeatService.coreClient);
                     if (result.contains("empty")){//一键预约失败
                         message.what=ORDERSTATUS_ONEKEY_FAIL;
@@ -197,7 +202,7 @@ public class Order_Seat_Process extends AppCompatActivity {
                         message.obj=result;
                         orderstatus=ORDERSTATUS_ONE_KEY_SUCCESS;
                     }
-                    System.out.println(result + "=====");
+//                    System.out.println(result + "=====");
                 } catch (Exception e) {
                     //链接错误，包括超时
                     message.what = ORDERSTATUS_TIMEOUT;
@@ -234,7 +239,10 @@ public class Order_Seat_Process extends AppCompatActivity {
                     order_seat_result_tv.setTextColor(getResources().getColor(R.color.green));
                     order_seat_result_tv.setText(getResources().getText(R.string.order_success));
                     progressBar.setVisibility(View.INVISIBLE);
+
+                    Log.i("bac","一键预约1："+msg.obj.toString());
                     String[] strings=msg.obj.toString().split(",");
+                    Log.i("bac","一键预约2："+strings);
                     order_infotv.setText("预约位置："+strings[0]+"楼"+strings[1]+"号座,预约日期："+strings[2]+"\n请在7:50至8:35到图书馆刷卡确认");
                     //设置最晚刷卡确定时间
                     confirmtime=new android.text.format.Time("GMT+8");
@@ -280,7 +288,7 @@ public class Order_Seat_Process extends AppCompatActivity {
                 // TODO: 2015/11/18
                 case ORDERSTATUS_SPECIFIC_FAIl://精确预约失败
                     progressBar.setVisibility(View.INVISIBLE);
-                    Log.i("bacground", "精确预约失败");
+                    Log.i("bac", "bac message :精确预约失败");
                     order_seat_result_tv.setTextColor(getResources().getColor(R.color.red));
                     order_seat_result_tv.setText(getResources().getText(R.string.order_fail));
                     orderstatus=ORDERSTATUS_SPECIFIC_FAIl;

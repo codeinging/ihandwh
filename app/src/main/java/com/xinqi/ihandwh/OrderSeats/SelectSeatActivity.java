@@ -203,7 +203,7 @@ public class SelectSeatActivity extends AppCompatActivity{
                             intent.putExtra(SelectSeatActivity.ORDER_SITNUM, mSeatInfoAdapter.getSelectedSeat().id);
                             intent.putExtra(SelectSeatActivity.ORDER_DATE, mBookDate);
                             startActivity(intent);
-                            Log.i("bacground", "specific order" + FloorName2ID.getID(mSelectedFloorName) + "=="
+                            Log.i("bac", "specific order" + FloorName2ID.getID(mSelectedFloorName) + "=="
                                     + mSeatInfoAdapter.getSelectedSeat().id + "--"
                                     + mBookDate);
                         }
@@ -277,6 +277,7 @@ public class SelectSeatActivity extends AppCompatActivity{
                 if (userinfoUtils.get_Login_Status()){
                 OrderSeatService.testUserInfoIsTrue(userinfoUtils.get_LastId(), userinfoUtils.get_LastPassword());
                 seatRaw=OrderSeatService.getYuYueInfo(FloorName2ID.getID(mSelectedFloorName), mBookDate);
+                    Log.i("bac","获取房间信息："+seatRaw);
                 }else {
                 OrderSeatService.testUserInfoIsTrue("201100800169","011796");
                 seatRaw=OrderSeatService.getYuYueInfo(FloorName2ID.getID(mSelectedFloorName),mBookDate);
