@@ -13,9 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.xinqi.ihandwh.HomeActivity;
-import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
 import com.umeng.analytics.MobclickAgent;
+import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
 import com.xinqi.ihandwh.R;
 
 //import com.xinqi.ihandwh.R;
@@ -34,7 +33,6 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
         ConfigCenterContentPage fragment = new ConfigCenterContentPage();
         return fragment;
     }
-
     /**
      * Fragment初始化入口，用于绘制界面和初始化，代码在return view和View view中间插入
      * @param inflater
@@ -80,7 +78,6 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
         }else {
             btnlog_in_out.setBackgroundResource(R.drawable.btn_login_bacground);
             Log.i("bac", haslogin + "是否登陆");
-            btnlog_in_out.setBackgroundResource(R.drawable.btn_login_bacground);
             id_tv.setTextSize(25);
             id_tv.setText("未登录");
         }
@@ -106,21 +103,29 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
         switch(v.getId())
         {
             case R.id.btn_log_in_out:
+                haslogin=userinfoUtils.get_Login_Status();
                 if (haslogin){
                     Log.i("bac","8888888");
                     logout();
                 }else {
+                    //尝试用startActivityForResult不行
                     Intent intent=new Intent(getActivity(), LoginActivity.class);
-                    intent.putExtra("from",0);
+//                    intent.putExtra("from",2);
                     startActivity(intent);
+                    getActivity().finish();
+
+
+//                    startActivityForResult(intent,2);
+
+
                 // TODO: 2015/11/25
-                /*getActivity().finish();*/
                 }
                 break;
             case R.id.aboutBtn:
                 startActivity(new Intent(getActivity(),SeeAboutOur.class));
                 break;
             case R.id.btn_see_order_record:
+                haslogin=userinfoUtils.get_Login_Status();
                 if (haslogin) {
                         startActivity(new Intent(getActivity(),SeeOrderSeatHistory.class));
                 }else {
@@ -159,11 +164,20 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
                 new AlertDialog.Builder(getActivity()).setTitle("退出登录").setMessage("退出登录成功！").setNegativeButton("返回", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         dialog.dismiss();
-                        Intent intent=new Intent(new Intent(getActivity(),HomeActivity.class));
-                        intent.putExtra("pos",2);
+                        btnlog_in_out.setBackgroundResource(R.drawable.btn_login_bacground);
+                        Log.i("bac", haslogin + "是否登陆");
+                        id_tv.setTextSize(25);
+                        id_tv.setText("未登录");
+                       /* Intent intent=new Intent(new Intent(getActivity(),HomeActivity.class));
+                        intent.putExtra("pos", 2);
                         startActivity(intent);
-                        getActivity().finish();
+                        getActivity().finish();*/
+                       /* FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.slidingtab_fragment,null);
+                        transaction.commit();*/
+
                     }
                 }).show();
             }
@@ -174,5 +188,10 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("ConfigCenter");
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

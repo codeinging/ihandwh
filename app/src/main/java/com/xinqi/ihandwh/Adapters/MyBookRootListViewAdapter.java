@@ -122,6 +122,7 @@ public class MyBookRootListViewAdapter extends BaseAdapter {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 pos = (int) v.getTag();
                 AlertDialog.Builder builder=new AlertDialog.Builder(context);
                 builder.setTitle("提醒");

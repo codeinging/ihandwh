@@ -15,15 +15,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.xinqi.ihandwh.HomeActivity;
-import com.xinqi.ihandwh.HttpService.OrderSeatService.OrderSeatService;
-import com.xinqi.ihandwh.OrderSeats.SelectSeatActivity;
-//import com.xinqi.ihandwh.R;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
+import com.xinqi.ihandwh.HomeActivity;
+import com.xinqi.ihandwh.HttpService.OrderSeatService.OrderSeatService;
+import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
+import com.xinqi.ihandwh.OrderSeats.SelectSeatActivity;
 import com.xinqi.ihandwh.R;
 
-import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
+//import com.xinqi.ihandwh.R;
 
 /**
  * Created by syd on 2015/11/15.
@@ -113,14 +113,23 @@ public class LoginActivity extends AppCompatActivity {
                     if (from == -1) {
                        startActivity(new Intent(LoginActivity.this, SelectSeatActivity.class));
                         finish();
-                    } else if (from == 0) {
+                    } /*else if (from == 0) {
                         Intent intent=new Intent(new Intent(LoginActivity.this,HomeActivity.class));
                         intent.putExtra("pos",2);
 //                            HomeActivity homeActivity = new HomeActivity();
 //                            homeActivity.viewPager.setCurrentItem(2);
                       startActivity(intent);
                         finish();
-                    }
+                    }*/
+//                    Intent resultintent=new Intent();
+//                    resultintent.putExtra("back",1);
+//                    setResult(1);
+                    Intent intent=new Intent(new Intent(LoginActivity.this,HomeActivity.class));
+                    intent.putExtra("pos",2);
+//                            HomeActivity homeActivity = new HomeActivity();
+//                            homeActivity.viewPager.setCurrentItem(2);
+                    startActivity(intent);
+                    finish();
 
 //                    context.startActivity(new Intent(context, HomeActivity.class));
                 }else {

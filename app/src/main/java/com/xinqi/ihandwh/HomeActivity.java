@@ -36,13 +36,12 @@ public class HomeActivity extends FragmentActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     WifiManager wifiManager;
-    public static int pos = 0;
+    private FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        pos = getIntent().getIntExtra("pos", 0);
         // checkNetworkState();
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -51,7 +50,7 @@ public class HomeActivity extends FragmentActivity {
         if (savedInstanceState != null)
             return;
         mSlidingTabsHost = new SlidingTabsIconsFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+         transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.slidingtab_fragment, mSlidingTabsHost);
         transaction.commit();
         //登录帐号统计
@@ -160,4 +159,5 @@ public class HomeActivity extends FragmentActivity {
         super.onPause();
         MobclickAgent.onPause(this);
     }
+
 }

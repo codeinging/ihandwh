@@ -36,7 +36,9 @@ import java.util.Date;
 public class Order_Seat_Process extends AppCompatActivity {
     private SharedPreferences sharedPreferences;//存储最近一次预约是否在本机取消
     private SharedPreferences.Editor editor;
-    TextView order_seat_result_tv,order_infotv;
+    private TextView order_seat_result_tv, order_info_warn_tv,order_info_time_tv,order_info_pos_tv,your_his_words;
+    private View middleView;
+    private View line1,line2;
     Button button;
     public static final int ORDERSTATUS_TIMEOUT =-1;//链接失败
     //public static final int ORDERSTATUS_CONECT_SUCCESS =1;//链接成功
@@ -62,6 +64,7 @@ public class Order_Seat_Process extends AppCompatActivity {
         setContentView(R.layout.order_seat_result_layout);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("预约座位");
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
         currenttime=new android.text.format.Time("GMT+8");
         //获取当前系统时间
         currenttime.setToNow();
@@ -77,8 +80,14 @@ public class Order_Seat_Process extends AppCompatActivity {
         sitNum=intent.getStringExtra(SelectSeatActivity.ORDER_SITNUM);
         date=intent.getStringExtra(SelectSeatActivity.ORDER_DATE);
         progressBar= (ProgressBar) findViewById(R.id.orderprogressbar);
-        order_infotv= (TextView) findViewById(R.id.order_infotv);
+        order_info_warn_tv = (TextView) findViewById(R.id.order_info_warn_tv);
+        order_info_time_tv = (TextView) findViewById(R.id.order_info_time_tv);
+        order_info_pos_tv = (TextView) findViewById(R.id.order_info_position_tvtv);
         order_seat_result_tv= (TextView) findViewById(R.id.order_seat_result_tv);
+        your_his_words= (TextView) findViewById(R.id.your_his_words);
+        middleView=findViewById(R.id.middleView);
+        line1=findViewById(R.id.order_info_line1);
+        line2=findViewById(R.id.order_info_line2);
         button= (Button) findViewById(R.id.btnafter_order_result);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,8 +102,9 @@ public class Order_Seat_Process extends AppCompatActivity {
                         finish();
                     }
                     button.setEnabled(false);
-                    order_seat_result_tv.setText("正在预约...");
-                    order_seat_result_tv.setTextColor(getResources().getColor(R.color.green));
+                    order_seat_result_tv.setText("预约中");
+                    middleView.setVisibility(View.INVISIBLE);
+//                    order_seat_result_tv.setTextColor(getResources().getColor(R.color.green));
                 } else if (orderstatus==ORDERSTATUS_SPECIFIC_SEAT_ORDERED){
                     //重新选择座位
 
@@ -107,8 +117,12 @@ public class Order_Seat_Process extends AppCompatActivity {
         });
         if (orderMode==0) {
             OneKey_Order();
+            middleView.setVisibility(View.INVISIBLE);
+
         }else if (orderMode==1){
             specific_Order(OrderSeatService.coreClient, room, sitNum, date);
+            middleView.setVisibility(View.INVISIBLE);
+
         }
         button.setEnabled(false);
         PushAgent.getInstance(this).onAppStart();
@@ -222,28 +236,41 @@ public class Order_Seat_Process extends AppCompatActivity {
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case ORDERSTATUS_TIMEOUT://链接错误
+                    middleView.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
                     order_seat_result_tv.setTextColor(getResources().getColor(R.color.red));
                     order_seat_result_tv.setText(getResources().getText(R.string.order_fail));
-                    order_infotv.setText(getResources().getText(R.string.order_connection_out_tip));
-                    order_infotv.setVisibility(View.VISIBLE);
+                    order_info_time_tv.setText(getResources().getText(R.string.order_connection_out_tip));
+                    // TODO: 2016/3/3
+                    your_his_words.setVisibility(View.GONE);
+                    line1.setVisibility(View.GONE);
+                    line2.setVisibility(View.GONE);
+                    order_info_warn_tv.setVisibility(View.VISIBLE);
+                    order_info_pos_tv.setVisibility(View.GONE);
+                    order_info_warn_tv.setVisibility(View.GONE);
                     button.setVisibility(View.VISIBLE);
                     orderstatus = ORDERSTATUS_TIMEOUT;
                     button.setText("再试一次");
                     button.setEnabled(true);
                     break;
                 case ORDERSTATUS_ONE_KEY_SUCCESS://一键预成功
+                    middleView.setVisibility(View.VISIBLE);
+
                     editor.putBoolean("leastcanceled", false);//将当前预约设置为没有在本机取消
                     editor.commit();
-                    order_infotv.setVisibility(View.VISIBLE);
-                    order_seat_result_tv.setTextColor(getResources().getColor(R.color.green));
+                    order_info_warn_tv.setVisibility(View.VISIBLE);
+//                    order_seat_result_tv.setTextColor(getResources().getColor(R.color.green));
                     order_seat_result_tv.setText(getResources().getText(R.string.order_success));
                     progressBar.setVisibility(View.INVISIBLE);
-
-                    Log.i("bac","一键预约1："+msg.obj.toString());
+                    line1.setVisibility(View.VISIBLE);
+                    line2.setVisibility(View.VISIBLE);
+                    your_his_words.setVisibility(View.VISIBLE);
+                    Log.i("bac", "一键预约1：" + msg.obj.toString());
                     String[] strings=msg.obj.toString().split(",");
-                    Log.i("bac","一键预约2："+strings);
-                    order_infotv.setText("预约位置："+strings[0]+"楼"+strings[1]+"号座,预约日期："+strings[2]+"\n请在7:50至8:35到图书馆刷卡确认");
+                    Log.i("bac", "一键预约2：" + strings);
+                    order_info_pos_tv.setText("位置：" + strings[0] + "楼" + strings[1] + "座");
+                    order_info_time_tv.setText("时间：" + strings[2]);
+                    order_info_warn_tv.setText("请您于"+strings[2]+",\n"+"7.50am-8.35am准时刷卡确认");
                     //设置最晚刷卡确定时间
                     confirmtime=new android.text.format.Time("GMT+8");
                     confirmtime.set(0, 35, 8, currentDay, currentMonth, currentYear);
@@ -265,44 +292,78 @@ public class Order_Seat_Process extends AppCompatActivity {
                     button.setEnabled(true);
                    break;
                 case ORDERSTATUS_ONEKEY_FAIL://一键预约失败
+                    middleView.setVisibility(View.VISIBLE);
+
                     progressBar.setVisibility(View.INVISIBLE);
-                    order_infotv.setVisibility(View.VISIBLE);
                     order_seat_result_tv.setTextColor(getResources().getColor(R.color.red));
                     order_seat_result_tv.setText(getResources().getText(R.string.order_fail));
-                    order_infotv.setText(getResources().getText(R.string.order_empty_tip));
+                    order_info_time_tv.setText(getResources().getText(R.string.order_empty_tip));
                     orderstatus= ORDERSTATUS_ONEKEY_FAIL;
                     button.setText("再试一次");
                     button.setEnabled(true);
+                    // TODO: 2016/3/3
+                    your_his_words.setVisibility(View.GONE);
+                    line1.setVisibility(View.GONE);
+                    line2.setVisibility(View.GONE);
+                    order_info_warn_tv.setVisibility(View.VISIBLE);
+                    order_info_pos_tv.setVisibility(View.GONE);
+                    order_info_warn_tv.setVisibility(View.GONE);
                     break;
                 case ORDERSTATUS_HASORDERED://已经存在预约记录
+                    middleView.setVisibility(View.VISIBLE);
+
                     //Log.i("9999999999999999","13");
                         progressBar.setVisibility(View.INVISIBLE);
-                        order_infotv.setVisibility(View.VISIBLE);
                         order_seat_result_tv.setTextColor(getResources().getColor(R.color.red));
                         order_seat_result_tv.setText(getResources().getText(R.string.order_fail));
-                        order_infotv.setText(getResources().getText(R.string.order_hashistory_tip));
+                        order_info_time_tv.setText(getResources().getText(R.string.order_hashistory_tip));
                         orderstatus = ORDERSTATUS_HASORDERED;
                         button.setText("查看预约记录");
                         button.setEnabled(true);
+                    // TODO: 2016/3/3
+                    your_his_words.setVisibility(View.GONE);
+                    line1.setVisibility(View.GONE);
+                    line2.setVisibility(View.GONE);
+                    order_info_warn_tv.setVisibility(View.VISIBLE);
+                    order_info_pos_tv.setVisibility(View.GONE);
+                    order_info_warn_tv.setVisibility(View.GONE);
                     break;
                 // TODO: 2015/11/18
                 case ORDERSTATUS_SPECIFIC_FAIl://精确预约失败
+                    middleView.setVisibility(View.VISIBLE);
+
                     progressBar.setVisibility(View.INVISIBLE);
                     Log.i("bac", "bac message :精确预约失败");
                     order_seat_result_tv.setTextColor(getResources().getColor(R.color.red));
                     order_seat_result_tv.setText(getResources().getText(R.string.order_fail));
+                    order_info_time_tv.setText(getResources().getText(R.string.order_empty_tip));
                     orderstatus=ORDERSTATUS_SPECIFIC_FAIl;
                     button.setText("重新选择座位");
                     button.setEnabled(true);
+                    // TODO: 2016/3/3
+                    your_his_words.setVisibility(View.GONE);
+                    line1.setVisibility(View.GONE);
+                    line2.setVisibility(View.GONE);
+                    order_info_warn_tv.setVisibility(View.VISIBLE);
+                    order_info_pos_tv.setVisibility(View.GONE);
+                    order_info_warn_tv.setVisibility(View.GONE);
+
                     break;
                 case ORDERSTATUS_SPECIFIC_SUCCESS://精确预约成功
-                    order_infotv.setVisibility(View.VISIBLE);
+                    middleView.setVisibility(View.VISIBLE);
+
+                    order_info_warn_tv.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
+                    order_info_time_tv.setVisibility(View.VISIBLE);
+                    order_info_warn_tv.setVisibility(View.VISIBLE);
+                    order_info_pos_tv.setVisibility(View.VISIBLE);
                     order_seat_result_tv.setText(getResources().getText(R.string.order_success));
                     room=roomid_totext(room);
                     confirmtime=new android.text.format.Time("GMT+8");
                     confirmtime.set(0, 35, 8, currentDay, currentMonth, currentYear);
-                    order_infotv.setText("预约位置:"+room + "楼" + sitNum + "号座" + "预约日期：" + date+"\n请在7:50至8:35到图书馆刷卡确认");
+                    order_info_warn_tv.setText("位置：" + room + "楼" + sitNum + "座" + "预约日期：" + date + "\n请在7:50至8:35到图书馆刷卡确认");
+                    order_info_time_tv.setText("时间："+date);
+                    order_info_warn_tv.setText("请您于"+date+",\n7.50am-8.35am准时刷卡确认");
                     orderstatus=ORDERSTATUS_SPECIFIC_SUCCESS;
                     button.setText("查看预约记录");
                     //保存预约信息到数据库

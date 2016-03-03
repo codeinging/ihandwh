@@ -82,13 +82,14 @@ public class SelectSeatActivity extends AppCompatActivity{
         setContentView(R.layout.activity_book_seat);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("查座预约");
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
         actionBar.show();
         getBookDate();
         progressBar= (ProgressBar) findViewById(R.id.refreshperroompro);
         refreshtip = (TextView) findViewById(R.id.roomrefreshtips);
         intent=new Intent(SelectSeatActivity.this, Order_Seat_Process.class);
         mBookSeatDate = (TextView) findViewById(R.id.bookDateTextView);
-        mBookSeatDate.setText(getResources().getString(R.string.order_time) + mBookDate);
+        mBookSeatDate.setText(mBookDate);
 
         //选择楼层事件
         spinner = (Spinner) findViewById(R.id.floorSpinner);
@@ -262,7 +263,7 @@ public class SelectSeatActivity extends AppCompatActivity{
             mSeatInfoAdapter.updateDataSet(mDataSet);
             mSeatInfoAdapter.notifyDataSetChanged();
         }
-        Toast.makeText(SelectSeatActivity.this,getResources().getString(R.string.load_complete),Toast.LENGTH_SHORT).show();
+//        Toast.makeText(SelectSeatActivity.this,getResources().getString(R.string.load_complete),Toast.LENGTH_SHORT).show();
     }
 
     private class DummyBackgroundTask extends AsyncTask<Void, Void, Integer> {

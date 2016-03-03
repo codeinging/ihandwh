@@ -27,28 +27,42 @@
 
     </FrameLayout>-->
 
+        <TextView
+        android:id="@+id/data_lable"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:layout_marginLeft="16dp"
+            android:text="预约日期"
+            />
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_weight="2"
+        android:layout_width="match_parent"
         android:text="Date:0000-00-00"
         android:textSize="20sp"
-        android:paddingLeft="10dp"
-        android:id="@+id/bookDateTextView"
-        android:layout_height="wrap_content"
-
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal|center_vertical"
+        android:id="@+id/bookDateTextView"
+        android:layout_height="40dp"
+         />
+      <!--  <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="123"
+            android:layout_gravity="center_horizontal"/>-->
+
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:text="@string/select_floor"
         android:textSize="20sp"
+        android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:id="@+id/floorSpinnerDescripTextView"
-        android:layout_below="@+id/bookDateTextView"
-        android:layout_marginLeft="10dp" />
+        android:layout_below="@+id/data_lable"
+        android:layout_marginLeft="16dp" />
     <LinearLayout
         android:layout_marginTop="100dp"
         android:layout_width="match_parent"
@@ -72,16 +86,22 @@
             android:text="正在加载座位信息"/>
     </LinearLayout>
     <Spinner
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:id="@+id/floorSpinner"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:dropDownWidth="match_parent"
+        android:gravity="center_horizontal|center_vertical"
         android:popupBackground="#00cfff"
-        android:layout_toEndOf="@id/floorSpinnerDescripTextView"
-        android:layout_toRightOf="@id/floorSpinnerDescripTextView"
-        android:layout_alignTop="@+id/floorSpinnerDescripTextView"
-        android:layout_marginRight="10dp">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/bookDateTextView"
+        >
 
     </Spinner>
+       <!-- android:layout_toEndOf="@id/floorSpinnerDescripTextView"
+        android:layout_toRightOf="@id/floorSpinnerDescripTextView"
+        android:layout_alignTop="@+id/floorSpinnerDescripTextView"-->
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
@@ -104,16 +124,15 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp" />
     <Button
-    android:layout_width="100dp"
-    android:textSize="15sp"
+    android:layout_width="match_parent"
     android:id="@+id/btn_order_seats"
-    android:layout_height="wrap_content"
-    android:background="@drawable/btn_login_bacground"
-    android:text="预约"
+    android:layout_height="45dp"
+    android:background="@drawable/btn_order_bacground"
         android:layout_alignParentEnd="false"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_alignParentRight="false"
+        android:layout_margin="16dp"
         android:layout_marginBottom="10dp" />
     <TextView
         android:layout_width="wrap_content"

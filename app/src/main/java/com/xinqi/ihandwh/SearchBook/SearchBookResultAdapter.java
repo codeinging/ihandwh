@@ -176,6 +176,7 @@ public class SearchBookResultAdapter extends RecyclerView.Adapter<RecyclerView.V
                         if (b) {
                             Toast.makeText(parent, "收藏路线", Toast.LENGTH_SHORT).show();
                             Log.i("bac", "搜藏" + b);
+                            updateBookRouteInfo();
                         }
                     }else {
                         AlertDialog.Builder builder=new AlertDialog.Builder(parent);
@@ -191,14 +192,20 @@ public class SearchBookResultAdapter extends RecyclerView.Adapter<RecyclerView.V
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 toggleButton.setBackgroundResource(R.drawable.add_on);
+
                                 Toast.makeText(parent, "取消收藏", Toast.LENGTH_SHORT).show();
-                                bookRouteHistoryHelper.deleteBookRoute(mDataSet.get(position).code);
+                                boolean b=bookRouteHistoryHelper.deleteBookRoute(mDataSet.get(position).code);
+                                Log.i("bac","delete："+b);
+                                updateBookRouteInfo();
+
                             }
                         });
                         builder.create();
                         builder.show();
                     }
-                    updateBookRouteInfo();
+
+                    Log.i("bac", "update：" + bookRouteInfos);
+
                 }
             });
 //            Button button= (Button) cardView.findViewById(R.id.btnsavemap);

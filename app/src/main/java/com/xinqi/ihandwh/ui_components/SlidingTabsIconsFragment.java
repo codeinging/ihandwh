@@ -17,11 +17,6 @@
 package com.xinqi.ihandwh.ui_components;
 
 //import com.xinqi.ihandwh.R;
-import com.xinqi.ihandwh.OrderSeats.BookSeatsContentPage;
-import com.xinqi.ihandwh.ConfigCenter.ConfigCenterContentPage;
-import com.xinqi.ihandwh.SearchBook.SearchBookContentPage;
-import com.xinqi.ihandwh.R;
-
 import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Color;
@@ -35,6 +30,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.xinqi.ihandwh.ConfigCenter.ConfigCenterContentPage;
+import com.xinqi.ihandwh.OrderSeats.BookSeatsContentPage;
+import com.xinqi.ihandwh.R;
+import com.xinqi.ihandwh.SearchBook.SearchBookContentPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -295,7 +295,7 @@ public class SlidingTabsIconsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("OnActivityResult", TAG);
+        Log.d("bac","12232341");
         for(int i=0;i<mTabs.size();++i)
             mTabs.get(i).mFragment.onActivityResult(requestCode, resultCode, data);
     }

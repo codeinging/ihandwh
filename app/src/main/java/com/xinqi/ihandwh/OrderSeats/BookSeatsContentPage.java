@@ -100,7 +100,7 @@ public class BookSeatsContentPage extends Fragment{
         isfirstin=sharedPreferences.getBoolean("isfirstin",true);
         hasknow= sharedPreferences.getBoolean("knowpull",false);
         View view=inflater.inflate(R.layout.book_seats_content_page, container, false);
-        if (!hasknow)tvrefresh.setVisibility(View.VISIBLE);
+//        if (!hasknow)tvrefresh.setVisibility(View.VISIBLE);
         Log.d("BookSeatsCP", "onCreateView()");
         //Test Data Gen
         Log.i("bac",isfirstin+"1111111111");
