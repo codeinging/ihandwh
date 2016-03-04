@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView errortv;
     String id,ps;
     Handler handler;
+    private Button mbtnlogin;
     //获取从哪里启动,0代表个人中心点击登陆，-1代表预约未登录跳转，默认为0
     int from=0;
     @Override
@@ -48,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         etid = (EditText) findViewById(R.id.etid);
         etps = (EditText) findViewById(R.id.etps);
         errortv = (TextView) findViewById(R.id.errortv);
+        mbtnlogin= (Button) findViewById(R.id.btn_login);
         etid.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -83,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
+        mbtnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 id = etid.getText().toString();
@@ -91,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(etid.getText()) || TextUtils.isEmpty(etps.getText())) {
                     errortv.setText("请输入账号及密码");
                 } else {
+                    mbtnlogin.setEnabled(false);
                     login(id, ps, from);
                     Log.i("bac", "id:" + id + "ps:" + ps);
                 }
@@ -104,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 if (msg.obj.toString().contains("fail")) {
                     Toast.makeText(LoginActivity.this, "用户名或密码错误！", Toast.LENGTH_SHORT).show();
+                    mbtnlogin.setEnabled(true);
                 } else if(msg.obj.toString().contains("success")) {
                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                     //更新登录信息
@@ -134,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
 //                    context.startActivity(new Intent(context, HomeActivity.class));
                 }else {
                     Toast.makeText(LoginActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                    mbtnlogin.setEnabled(true);
 
                 }
             }

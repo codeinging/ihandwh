@@ -40,7 +40,7 @@ public class SelectSeatActivity extends AppCompatActivity{
     /*//楼层数量
     public static final int FLOORS=12;*/
     //座位显示列数
-    private static final Integer COLUMN_COUNT=6;
+    private static final Integer COLUMN_COUNT=5;
     //预约日期格式
     private static final String DATE_FORMAT="yyyy/MM/dd";
     public static final String ORDERMODE ="ordermode" ;
@@ -68,13 +68,10 @@ public class SelectSeatActivity extends AppCompatActivity{
     private List<String> floor_item=new ArrayList<>();
     private boolean randomOrder=false;
     Intent intent;
-
     private TextView mNoSeatWarn;
     private ProgressBar progressBar;
     private TextView refreshtip;
-
     private String refreshtiptext;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,11 +87,11 @@ public class SelectSeatActivity extends AppCompatActivity{
         intent=new Intent(SelectSeatActivity.this, Order_Seat_Process.class);
         mBookSeatDate = (TextView) findViewById(R.id.bookDateTextView);
         mBookSeatDate.setText(mBookDate);
-
         //选择楼层事件
         spinner = (Spinner) findViewById(R.id.floorSpinner);
-        refreshtip.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
+        // TODO: 2016/3/4  
+        refreshtip.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
         refreshtiptext=refreshtip.getText().toString().trim();
         refreshtip.setText("正在加载楼层信息");
         new AsyncTask<Void,Void,Integer>(){
@@ -123,7 +120,6 @@ public class SelectSeatActivity extends AppCompatActivity{
             protected void onPostExecute(Integer result) {
                 super.onPostExecute(result);
                 // Tell the Fragment that the refresh has completed
-
                 //楼层选项内容数组
                 arrayAdapter = new ArrayAdapter<String>(SelectSeatActivity.this, android.R.layout.simple_spinner_item, floor_item);
                 spinner.setAdapter(arrayAdapter);
@@ -250,7 +246,7 @@ public class SelectSeatActivity extends AppCompatActivity{
     }
 
     private void onRefreshComplete() {
-        if (mDataSet.length < 1) {
+        if (mDataSet==null||mDataSet.length < 1) {
             refreshtip.setVisibility(View.GONE);
             progressBar.setVisibility(View.GONE);
             mNoSeatWarn.setVisibility(View.VISIBLE);
