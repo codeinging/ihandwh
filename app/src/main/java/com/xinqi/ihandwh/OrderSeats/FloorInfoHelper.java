@@ -139,7 +139,7 @@ public class FloorInfoHelper extends SQLiteOpenHelper {
         for (cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext()){
             String id=cursor.getString(cursor.getColumnIndex(KEY_ROW_ID));
              boolean b=db.delete(TABLE_NAME, KEY_ROW_ID + "=" +id, null)>0 ;
-            Log.i("sxj","删除"+b);
+            //Log.i("sxj","删除"+b);
         }
 //        Log.i("bac","firstid:"+lasttid);
         cursor.close();

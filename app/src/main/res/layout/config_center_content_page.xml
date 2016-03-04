@@ -113,14 +113,14 @@
             android:layout_marginTop="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
             <Button
-                android:paddingLeft="50dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:background="#ffffff"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/getDeviceTokenBtn"
                 android:text="获取设备Token"
                 android:enabled="true" />

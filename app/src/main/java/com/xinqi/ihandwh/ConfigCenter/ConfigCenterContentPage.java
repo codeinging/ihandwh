@@ -53,8 +53,8 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
 //        aboutour= (TextView) view.findViewById(R.id.aboutBtn);
 //        aboutour.setOnClickListener(this);
         view.findViewById(R.id.feedBackBtn).setOnClickListener(this);
-        view.findViewById(R.id.getDeviceTokenBtn).setVisibility(View.GONE);
-//        view.findViewById(R.id.getDeviceTokenBtn).setOnClickListener(this);
+//        view.findViewById(R.id.getDeviceTokenBtn).setVisibility(View.GONE);
+        view.findViewById(R.id.getDeviceTokenBtn).setOnClickListener(this);
         return view;
     }
     /**
