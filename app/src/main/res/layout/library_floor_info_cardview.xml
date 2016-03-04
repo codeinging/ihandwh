@@ -6,7 +6,7 @@
         android:id="@+id/floorInfoCardView"
         style="@style/Widget.FloorInfo.CardView"
         android:layout_width="match_parent"
-        android:layout_margin="15dp"
+        android:layout_margin="4dp"
         android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"

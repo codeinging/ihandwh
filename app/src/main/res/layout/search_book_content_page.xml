@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:id="@+id/searchparent"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:background="@color/background_holo_light">
 
     <!--<AutoCompleteTextView-->
         <!--android:id="@+id/searchKeyInput"-->
