@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.umeng.message.UmengRegistrar;
 import com.xinqi.ihandwh.Local_Utils.UserinfoUtils;
 import com.xinqi.ihandwh.ui_components.SlidingTabsIconsFragment;
 import com.umeng.analytics.MobclickAgent;
@@ -65,6 +66,8 @@ public class HomeActivity extends FragmentActivity {
         mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         mActionBar.setDisplayShowCustomEnabled(true);
         mActionBar.setCustomView(R.layout.action_bar_main);
+
+        Log.d("Umeng Push Info", "Device Token:"+UmengRegistrar.getRegistrationId(this));
     }
 
     //实现按两次退出程序

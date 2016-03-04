@@ -358,7 +358,7 @@ public class BookSeatsContentPage extends Fragment{
                     mDataSet[j].rest=floorInfos.get(j).rest;
                     mDataSet[j].layer=floorInfos.get(j).layer;
                     floorInfoHelper.insertFloorInfo(mDataSet[j].layer, mDataSet[j].total,mDataSet[j].rest);
-                    System.out.println(mDataSet[j].total+"=="+mDataSet[j].layer+"=="+mDataSet[j].rest);
+                    //System.out.println(mDataSet[j].total+"=="+mDataSet[j].layer+"=="+mDataSet[j].rest);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
