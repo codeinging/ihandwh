@@ -306,7 +306,6 @@ public class SearchBookResultActivity extends AppCompatActivity implements Searc
             super.onPostExecute(result);
             canrefresh=true;
         }
-
         /**
          * 获取搜索内容 返回解析到的HTML文件 arg0[0] title arg0[1] page
          */
