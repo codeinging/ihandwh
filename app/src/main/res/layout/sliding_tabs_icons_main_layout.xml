@@ -15,6 +15,7 @@
           android:id="@+id/sliding_tabs"
           android:layout_width="match_parent"
           android:layout_height="@dimen/tabs_height"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:background="#f5f5f5" />
 
 </RelativeLayout>
