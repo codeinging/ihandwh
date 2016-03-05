@@ -58,7 +58,6 @@ public class HomeActivity extends FragmentActivity {
         UserinfoUtils usr = new UserinfoUtils(this);
         MobclickAgent.onProfileSignIn(usr.get_LastId());
         PushAgent.getInstance(this).onAppStart();
-        UmengUpdateAgent.update(this);
 
         ActionBar mActionBar = getActionBar();
         if (mActionBar == null)
