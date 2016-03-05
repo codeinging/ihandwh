@@ -59,6 +59,9 @@
             android:layout_marginTop="20dp"
             android:layout_margin="16dp"
             android:textAlignment="center"
+            android:textSize="30sp"
+            android:text="登录"
+            android:textColor="@color/white"
             android:background="@drawable/btn_login_bacground"
             />
 

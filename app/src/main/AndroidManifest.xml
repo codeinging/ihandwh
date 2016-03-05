@@ -61,7 +61,6 @@
             android:value="55379abe67e58eec71002277" />
         <meta-data android:name="UMENG_MESSAGE_SECRET"
             android:value="b57bfa84fee83ea9d4fb5e2ad42b74cb" />
-
         <!-- 监听通知点击或者忽略处理的广播 -->
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
