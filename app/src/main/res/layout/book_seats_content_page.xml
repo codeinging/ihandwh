@@ -56,12 +56,22 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="@string/bookseathometip"/>-->
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar2"
+        android:layout_gravity="center_horizontal" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_margin="16dp"
         android:id="@+id/bookRandomSeatButton"
-        android:background="@drawable/btn_order_tomorrow_bacground"
+        android:background="@drawable/btn_background"
         android:layout_weight="1"
+        android:text="预约明日座位"
+        android:textSize="30dp"
+        android:textColor="@color/white"
         />
 </LinearLayout>
