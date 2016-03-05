@@ -79,7 +79,7 @@ public class SelectSeatActivity extends AppCompatActivity{
         setContentView(R.layout.activity_book_seat);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("查座预约");
-        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback1);
         actionBar.show();
         getBookDate();
         progressBar= (ProgressBar) findViewById(R.id.refreshperroompro);

@@ -64,7 +64,7 @@ public class Order_Seat_Process extends AppCompatActivity {
         setContentView(R.layout.order_seat_result_layout);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("预约座位");
-        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback1);
         currenttime=new android.text.format.Time("GMT+8");
         //获取当前系统时间
         currenttime.setToNow();

@@ -21,7 +21,7 @@ public class SeeAboutOur extends AppCompatActivity {
         actionBar=getSupportActionBar();
         setContentView(R.layout.about_our_layout);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback1);
 
         actionBar.setTitle("关于我们");
         PushAgent.getInstance(this).onAppStart();

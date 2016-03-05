@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         actionBar.setTitle("用户登录");
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback1);
         from = getIntent().getIntExtra("from", 0);
         etid = (EditText) findViewById(R.id.etid);
         etps = (EditText) findViewById(R.id.etps);
