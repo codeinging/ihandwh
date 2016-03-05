@@ -38,12 +38,13 @@ public class WelcomeActivity extends Activity {
         PushAgent.getInstance(this).enable();
         FeedbackAgent agent=new FeedbackAgent(this);
         agent.sync();
-        UmengUpdateAgent.update(this);
     }
 
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
+            UmengUpdateAgent.setUpdateOnlyWifi(false);
+            UmengUpdateAgent.update(WelcomeActivity.this);
             //判断是否已经登陆，如果没有登陆，则进入登陆界面
             goHome();
         }

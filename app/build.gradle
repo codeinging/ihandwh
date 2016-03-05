@@ -8,8 +8,8 @@ android {
         applicationId "com.xinqi.ihandwh"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 101
-        versionName "2.1.0.0"
+        versionCode 102
+        versionName '2.1.0.0'
     }
     buildTypes {
         release {
