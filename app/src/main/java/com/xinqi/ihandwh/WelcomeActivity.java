@@ -12,6 +12,7 @@ import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.message.PushAgent;
+import com.umeng.update.UmengUpdateAgent;
 
 /**
  * Created by syd on 2015/11/12.
@@ -37,6 +38,7 @@ public class WelcomeActivity extends Activity {
         PushAgent.getInstance(this).enable();
         FeedbackAgent agent=new FeedbackAgent(this);
         agent.sync();
+        UmengUpdateAgent.update(this);
     }
 
     Handler handler=new Handler(){
