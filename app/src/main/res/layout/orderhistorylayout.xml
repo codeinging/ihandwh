@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="您到目前为止还没有预约记录"
-        android:textAlignment="center"
+        android:gravity="center_horizontal|center_vertical"
         android:textSize="20sp"
         android:id="@+id/nonorderhistory"
         android:textColor="@color/red"

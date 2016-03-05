@@ -26,7 +26,6 @@
             android:layout_gravity="center" />&ndash;&gt;
 
     </FrameLayout>-->
-
         <TextView
         android:id="@+id/data_lable"
             android:gravity="center_vertical"
@@ -53,20 +52,11 @@
             android:layout_gravity="center_horizontal"/>-->
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="@string/select_floor"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:id="@+id/floorSpinnerDescripTextView"
-        android:layout_below="@+id/data_lable"
-        android:layout_marginLeft="16dp" />
+
     <LinearLayout
         android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_below="@+id/floorSpinnerDescripTextView"
+        android:layout_below="@+id/floor"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <ProgressBar
@@ -79,26 +69,58 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:visibility="gone"
             android:textColor="@color/my"
             android:id="@+id/roomrefreshtips"
             android:text="正在加载座位信息"/>
     </LinearLayout>
-    <Spinner
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_below="@+id/data_lable"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:id="@+id/floor"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/select_floor"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/floorSpinnerDescripTextView"
+            android:layout_marginLeft="16dp" />
+
+    <Spinner
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:id="@+id/floorSpinner"
         android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:dropDownWidth="match_parent"
         android:gravity="center_horizontal|center_vertical"
         android:popupBackground="#00cfff"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal|center_vertical"
         android:layout_below="@id/bookDateTextView"
         >
 
     </Spinner>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/progressBar" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        </View>
+    </LinearLayout>
        <!-- android:layout_toEndOf="@id/floorSpinnerDescripTextView"
         android:layout_toRightOf="@id/floorSpinnerDescripTextView"
         android:layout_alignTop="@+id/floorSpinnerDescripTextView"-->
@@ -106,20 +128,22 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:id="@+id/seatInfoRecyclerView"
-        android:layout_below="@+id/floorSpinner"
+        android:layout_below="@+id/floor"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/noselectFloortv"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
     <TextView
-        android:textAlignment="center"
     android:textColor="#ff0000"
         android:id="@+id/noselectFloortv"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="选择不限楼层，系统将随机为您\n预约座位，实现一键预约"
         android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+
         android:layout_above="@+id/btn_order_seats"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp" />

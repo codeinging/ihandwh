@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -7,7 +6,6 @@
         <item name="colorPrimaryDark">@color/holo_primary</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
     <style name="Widget.FloorInfo.CardView" parent="Widget">
         <item name="android:gravity">center</item>
         <item name="android:layout_margin">4dp</item>
@@ -16,7 +14,6 @@
         <item name="contentPadding">@dimen/card_padding</item>
         <item name="cardBackgroundColor">@color/default_background_color</item>
     </style>
-
     <style name="Widget.SeatInfo.CardView" parent="Widget">
         <item name="android:gravity">center</item>
         <item name="android:layout_margin">2dp</item>
@@ -25,7 +22,6 @@
         <item name="contentPadding">4dp</item>
         <item name="cardBackgroundColor">@color/default_background_color</item>
     </style>
-
     <style name="Widget.BookInfo.CardView" parent="Widget">
         <item name="android:gravity">center</item>
         <item name="android:layout_margin">4dp</item>
@@ -34,7 +30,6 @@
         <item name="contentPadding">4dp</item>
         <item name="cardBackgroundColor">@color/default_background_color</item>
     </style>
-
     <style name="Widget.FeedBack.CardView" parent="Widget">
         <item name="android:gravity">center</item>
         <item name="android:layout_margin">8dp</item>
@@ -43,7 +38,6 @@
         <item name="contentPadding">6dp</item>
         <item name="cardBackgroundColor">#EEEEEE</item>
     </style>
-
     <style name="HomeActivityTheme" parent="android:Theme.Holo.Light">
         <item name="colorPrimary">@color/holo_primary</item>
         <item name="android:colorBackground">@color/background_holo_light</item>

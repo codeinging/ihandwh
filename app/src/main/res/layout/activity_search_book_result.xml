@@ -19,6 +19,7 @@
        <TextView
            android:layout_width="0dp"
            android:layout_height="wrap_content"
+           android:gravity="center_horizontal"
            android:text="@string/twicesearchtip"
            android:id="@+id/textView2"
            android:layout_below="@+id/bookCancelButton"
@@ -44,6 +45,8 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:textColor="@color/red"
         android:id="@+id/searchbooktips"
         android:text="正在查找书籍"/>

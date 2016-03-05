@@ -12,7 +12,8 @@
             android:text="新奇小组出品"
             android:textColor="#000000"
             android:textAppearance="?android:textAppearanceLarge"
-            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:textSize="20sp"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -28,9 +29,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:layout_marginTop="20dp"
             android:textSize="15sp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:textColor="#000000"
             android:text="公众号：xinqixiaobao001"
             />
@@ -38,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:textSize="15sp"
             android:textColor="#000000"
             android:text="产品：王顶 李奔"/>
@@ -46,7 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:textSize="15sp"
             android:textColor="#000000"
             android:text="开发：大表哥 单荣杨 朱胜强\n\t\t\t\t孙云栋 李瑞晨 田光前\n"/>
@@ -54,7 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:textSize="15sp"
             android:textColor="#000000"
             android:text="设计：程国勇"/>

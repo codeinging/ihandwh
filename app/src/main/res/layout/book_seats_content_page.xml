@@ -11,7 +11,7 @@
         android:textAlignment="center"
         android:text="今日剩余座位"
         android:textSize="20sp"
-        android:gravity="center_vertical"/>
+        android:gravity="center_vertical|center_horizontal"/>
    <!-- <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -43,7 +43,8 @@
         android:id="@+id/curFloorsSwipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/curFloorsRecyclerView"
             android:layout_width="match_parent"
@@ -61,5 +62,6 @@
         android:layout_margin="16dp"
         android:id="@+id/bookRandomSeatButton"
         android:background="@drawable/btn_order_tomorrow_bacground"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        />
 </LinearLayout>

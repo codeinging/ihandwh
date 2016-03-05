@@ -11,8 +11,9 @@
       <TextView
           android:layout_width="match_parent"
           android:textSize="30sp"
-          android:gravity="center_vertical"
+          android:gravity="center_vertical|center_horizontal"
           android:textAlignment="center"
+          android:layout_gravity="center_horizontal"
           android:id="@+id/order_seat_result_tv"
           android:layout_height="0dp"
           android:layout_weight="1.6"
@@ -46,7 +47,7 @@
             android:layout_weight="1"
             android:textSize="20sp"
             android:id="@+id/your_his_words"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|center_horizontal"
             android:text="您的预约记录"/>
         <View
             android:background="@color/gray"
@@ -62,12 +63,15 @@
             android:textSize="20sp"
             android:id="@+id/order_info_time_tv"
             android:textAlignment="center"
-            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
             android:text="时间：2015-12-23"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
             android:textSize="20sp"
             android:id="@+id/order_info_position_tvtv"
             android:text="位置：图东环楼三楼001座"
@@ -85,7 +89,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:textSize="17sp"
-            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
             android:text="请您于2015年12月21日，\n7.50am-8.35am准时刷卡确认"
             android:id="@+id/order_info_warn_tv"
             android:visibility="visible"
