@@ -39,4 +39,8 @@
     <string name="key_word">关键词</string>
     <string name="noseat">您选择的日期已经没有可预约的座位。</string>
     <string name="clesr_search_history">清空搜索记录</string>
+    <string name="loading_available_floors_tip">正在加载可预约楼层</string>
+    <string name="loading_available_seats_tip">正在加载可预约座位信息</string>
+    <string name="text_random_seat">不限</string>
+    <string name="text_floor_spinner_unavailable"> </string>
 </resources>
