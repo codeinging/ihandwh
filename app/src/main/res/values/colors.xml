@@ -35,6 +35,9 @@
     <color name="bright_foreground_holo_dark">#1b4cbf</color>
 
     <!-- 主界面背景色 -->
-    <color name="background_holo_light">#d8d8d8</color>
+    <color name="background_holo_light">#EDEDED</color>
+    <color name="foreground_material_light">#f5f5f5</color>
+    <color name="primary_text_default_material_light">#f5f5f5</color>
+    <color name="primary_text_material_light">#f5f5f5</color>
 
 </resources>

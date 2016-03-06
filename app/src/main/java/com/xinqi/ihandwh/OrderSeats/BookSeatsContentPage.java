@@ -119,7 +119,7 @@ public class BookSeatsContentPage extends Fragment{
         }else {
             genTestData01();
         }
-        /*Log.d("BookSeatsCP", "mDataSet.length:" + mDataSet.length);*/
+        /*Log.d("BookSeatsCP", "mSeatsInfoDataSet.length:" + mSeatsInfoDataSet.length);*/
         // Retrieve the SwipeRefreshLayout and ListView instances
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.curFloorsSwipeRefresh);
         // BEGIN_INCLUDE (change_colors)
@@ -176,8 +176,8 @@ public class BookSeatsContentPage extends Fragment{
                     mDataSet[i].layer = floorInfos.get(11 - i).layer;
                     mDataSet[i].total = floorInfos.get(11 - i).total;
                     mDataSet[i].rest = floorInfos.get(11 - i).rest;
-               /* mDataSet[i].total = 100;
-                mDataSet[i].rest = 100;*/
+               /* mSeatsInfoDataSet[i].total = 100;
+                mSeatsInfoDataSet[i].rest = 100;*/
                 }
             }
     }
@@ -313,7 +313,7 @@ public class BookSeatsContentPage extends Fragment{
         //***************************************************************************************
         //***************************************************************************************
         // Remove all items from the ListAdapter, and then replace them with the new items
-       // mDataSet=null;
+       // mSeatsInfoDataSet=null;
         mFloorInfoAdapter.updateDataSet(mDataSet);
         mFloorInfoAdapter.notifyDataSetChanged();
         // Stop the refreshing indicator
@@ -358,7 +358,7 @@ public class BookSeatsContentPage extends Fragment{
                     mDataSet[j].rest=floorInfos.get(j).rest;
                     mDataSet[j].layer=floorInfos.get(j).layer;
                     floorInfoHelper.insertFloorInfo(mDataSet[j].layer, mDataSet[j].total,mDataSet[j].rest);
-                    //System.out.println(mDataSet[j].total+"=="+mDataSet[j].layer+"=="+mDataSet[j].rest);
+                    //System.out.println(mSeatsInfoDataSet[j].total+"=="+mSeatsInfoDataSet[j].layer+"=="+mSeatsInfoDataSet[j].rest);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
