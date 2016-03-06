@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 import android.widget.TextView;
 
 //import com.xinqi.ihandwh.R;
@@ -81,7 +80,7 @@ public class FloorInfoAdapter extends RecyclerView.Adapter<FloorInfoAdapter.View
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view.
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.library_floor_info_cardview, viewGroup, false);
+                .inflate(R.layout.cardview_library_floor_info, viewGroup, false);
         return new ViewHolder(v);
     }
     // END_INCLUDE(recyclerViewOnCreateViewHolder)
