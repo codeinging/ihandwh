@@ -64,7 +64,7 @@ public class Order_Seat_Process extends AppCompatActivity {
         setContentView(R.layout.order_seat_result_layout);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("预约座位");
-        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback1);
         currenttime=new android.text.format.Time("GMT+8");
         //获取当前系统时间
         currenttime.setToNow();
@@ -132,6 +132,7 @@ public class Order_Seat_Process extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
+                Log.d("bac"," speci thread start");
                 Message message = new Message();
                     // 获取当前日期+1
                     SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
@@ -167,8 +168,9 @@ public class Order_Seat_Process extends AppCompatActivity {
 //                        message.what = ORDERSTATUS_SPECIFIC_FAIl;
 //                    } else {
                         try {
+                            Log.i("bac","精准预约返回值1111："+resultspe);
                             resultspe = OrderSeatService.subYuYueInfo(OrderSeatService.coreClient,room, sitNo, date);
-                            Log.i("bac","精准预约返回值："+resultspe);
+                            Log.i("bac","精准预约返回值1111："+resultspe);
                         } catch (Exception e) {
                             //链接错误，包括超时
                             Log.i("bacground", "精确预约超时");
@@ -217,6 +219,7 @@ public class Order_Seat_Process extends AppCompatActivity {
                     }else {//一键预约成功
                         message.what=ORDERSTATUS_ONE_KEY_SUCCESS;
                         message.obj=result;
+                        Log.i("bacc","One key rsult:"+result);
                         orderstatus=ORDERSTATUS_ONE_KEY_SUCCESS;
                     }
 //                    System.out.println(result + "=====");
@@ -355,17 +358,17 @@ public class Order_Seat_Process extends AppCompatActivity {
                     break;
                 case ORDERSTATUS_SPECIFIC_SUCCESS://精确预约成功
                     middleView.setVisibility(View.VISIBLE);
-                    order_info_warn_tv.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
                     order_info_time_tv.setVisibility(View.VISIBLE);
                     order_info_warn_tv.setVisibility(View.VISIBLE);
                     order_info_pos_tv.setVisibility(View.VISIBLE);
                     order_seat_result_tv.setText(getResources().getText(R.string.order_success));
                     room=roomid_totext(room);
+                    Log.i("bac","speci show room:"+room);
                     order_seat_result_tv.setTextColor(getResources().getColor(R.color.black));
                     confirmtime=new android.text.format.Time("GMT+8");
                     confirmtime.set(0, 35, 8, currentDay, currentMonth, currentYear);
-                    order_info_warn_tv.setText("位置：" + room + "楼" + sitNum + "座" + "预约日期：" + date + "\n请在7:50至8:35到图书馆刷卡确认");
+                    order_info_pos_tv.setText("位置：" + room + "楼" + sitNum + "座");
                     order_info_time_tv.setText("时间："+date);
                     order_info_warn_tv.setText("请您于"+date+",\n7.50am-8.35am准时刷卡确认");
                     orderstatus=ORDERSTATUS_SPECIFIC_SUCCESS;

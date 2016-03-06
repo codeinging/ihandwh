@@ -56,13 +56,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="@string/bookseathometip"/>-->
-    <ProgressBar
-        style="?android:attr/progressBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar2"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone" />
+    />
 
     <Button
         android:layout_width="match_parent"

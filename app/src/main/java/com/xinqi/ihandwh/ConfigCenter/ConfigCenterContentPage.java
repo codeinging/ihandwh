@@ -70,13 +70,12 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
         haslogin=userinfoUtils.get_Login_Status();
         Log.i("bac",haslogin+"是否登陆");
         if (haslogin){
-            btnlog_in_out.setBackgroundResource(R.drawable.btn_logout_bacground);
-//            btnlog_in_out.setText("退出登录");
-            btnlog_in_out.setBackgroundResource(R.drawable.btn_logout_bacground);
+            btnlog_in_out.setText("退出登录");
             id_tv.setTextSize(18);
             id_tv.setText("登录学号\n\n" + userinfoUtils.get_LastId());
         }else {
-            btnlog_in_out.setBackgroundResource(R.drawable.btn_login_bacground);
+
+            btnlog_in_out.setText("登录");
             Log.i("bac", haslogin + "是否登陆");
             id_tv.setTextSize(25);
             id_tv.setText("未登录");
@@ -165,11 +164,11 @@ public class ConfigCenterContentPage extends Fragment implements View.OnClickLis
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        dialog.dismiss();
-                        btnlog_in_out.setBackgroundResource(R.drawable.btn_login_bacground);
-                        Log.i("bac", haslogin + "是否登陆");
-                        id_tv.setTextSize(25);
                         id_tv.setText("未登录");
+                        btnlog_in_out.setText("登录");
+                        Log.i("bac", haslogin + "1111是否登陆");
+                        dialog.dismiss();
+//                        id_tv.setTextSize(25);
                        /* Intent intent=new Intent(new Intent(getActivity(),HomeActivity.class));
                         intent.putExtra("pos", 2);
                         startActivity(intent);

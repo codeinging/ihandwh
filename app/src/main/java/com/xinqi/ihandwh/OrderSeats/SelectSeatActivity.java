@@ -125,7 +125,7 @@ public class SelectSeatActivity extends AppCompatActivity implements View.OnClic
         actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("查座预约");
-        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback1);
         actionBar.show();
     }
 

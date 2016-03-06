@@ -31,7 +31,7 @@ public class CustomFeedBackActivity extends AppCompatActivity {
         setContentView(R.layout.see_collected_book_route);
         actionBar.setTitle("进行反馈");
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.psdback);
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback1);
         setContentView(R.layout.activity_custom_feedback);
         mContactMethod=(EditText)findViewById(R.id.contactMethodEditText);
         mFeedBackContent=(EditText)findViewById(R.id.feedBackContentEditText);
