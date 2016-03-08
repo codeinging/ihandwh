@@ -85,7 +85,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="账号密码为图书馆作为系统账号密码;\n如果未激活，请到图书馆进行激活"/>
+            android:text="账号密码为图书馆座位系统账号密码;\n如果未激活，请到图书馆进行激活"/>
 
     </LinearLayout>
 

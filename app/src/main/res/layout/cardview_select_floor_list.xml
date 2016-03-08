@@ -31,12 +31,13 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="不限"
             android:id="@+id/textViewBottom"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
             android:layout_centerHorizontal="true"
             android:textSize="@dimen/select_floor_list_text_size"
             android:layout_marginBottom="@dimen/select_floor_list_bottom_text_margin"

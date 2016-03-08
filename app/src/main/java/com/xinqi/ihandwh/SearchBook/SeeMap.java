@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.LoginFilter;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +28,7 @@ public class SeeMap extends AppCompatActivity {
         setContentView(R.layout.see_map_layout);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("地图");
+        actionBar.setHomeAsUpIndicator(R.drawable.psdback1);
         map= (ImageView) findViewById(R.id.imgshowmap);
         tvbookmapinfo= (TextView) findViewById(R.id.tvmapbookinfo);
         nonomaptv= (TextView) findViewById(R.id.nonemap);
